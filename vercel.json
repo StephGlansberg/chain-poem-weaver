@@ -1,0 +1,28 @@
+{
+  "installCommand": "npm install",
+  "buildCommand": "npm run build:production",
+  "devCommand": "npm run dev",
+  "cleanUrls": true,
+  "outputDirectory": "dist",
+  "headers": [
+    {
+      "source": "/.well-known/farcaster.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/poem",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/poem/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}

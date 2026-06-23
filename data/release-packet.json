@@ -1,0 +1,523 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-release-packet",
+  "appId": "chain-poem-weaver",
+  "generatedAtUtc": "2026-06-23T23:47:01.932Z",
+  "package": {
+    "name": "chain-poem-weaver",
+    "version": "0.1.0",
+    "quickAuthDependency": "^0.0.8"
+  },
+  "deployment": {
+    "productionMode": true,
+    "origin": "https://chain-poem-weaver.vercel.app",
+    "homeUrl": "https://chain-poem-weaver.vercel.app/poem",
+    "domain": "chain-poem-weaver.vercel.app",
+    "accountAssociationReady": true,
+    "buildGeneratedAtUtc": "2026-06-23T23:46:56.405Z"
+  },
+  "deployTarget": {
+    "schemaVersion": 1,
+    "kind": "chain-poem-weaver-deploy-target-readiness",
+    "generatedAtUtc": "2026-06-23T23:47:01.911Z",
+    "ok": true,
+    "origin": "https://chain-poem-weaver.vercel.app",
+    "domain": "chain-poem-weaver.vercel.app",
+    "env": {
+      "MINIAPP_ORIGIN": true,
+      "FARCASTER_ACCOUNT_ASSOCIATION_HEADER": true,
+      "FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD": true,
+      "FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE": true,
+      "CHAIN_POEM_PROVENANCE_SECRET": false,
+      "VERCEL_TOKEN": true,
+      "CLOUDFLARE_API_TOKEN": false,
+      "NETLIFY_AUTH_TOKEN": false
+    },
+    "tools": {
+      "npx": true,
+      "vercel": false,
+      "wrangler": false,
+      "netlify": false
+    },
+    "providers": [
+      {
+        "id": "vercel",
+        "serverCapableForCurrentApi": true,
+        "cliPresent": true,
+        "tokenPresent": true,
+        "ready": true,
+        "deployCommand": "npx vercel@latest deploy --prod --token %VERCEL_TOKEN%",
+        "note": "Best current fit for api/*.mjs serverless routes and /poem rewrite. npx is enough when a token is configured."
+      },
+      {
+        "id": "cloudflare-pages",
+        "serverCapableForCurrentApi": false,
+        "cliPresent": false,
+        "tokenPresent": false,
+        "ready": false,
+        "deployCommand": "wrangler pages deploy dist",
+        "note": "Static Pages alone will not run current Node-style api/*.mjs routes without a Pages Functions adapter."
+      },
+      {
+        "id": "netlify",
+        "serverCapableForCurrentApi": false,
+        "cliPresent": false,
+        "tokenPresent": false,
+        "ready": false,
+        "deployCommand": "netlify deploy --prod --dir dist",
+        "note": "Needs function adapter before current api/*.mjs routes are live."
+      }
+    ],
+    "preferredProvider": "vercel",
+    "blockers": [],
+    "warnings": [
+      "account_association_shape_only_not_cryptographic_verification",
+      "chain_poem_provenance_secret_missing_unsigned_preview_only"
+    ],
+    "next": "Build production dist and deploy with npx vercel@latest deploy --prod --token %VERCEL_TOKEN%."
+  },
+  "manifest": {
+    "sourceHomeUrl": "https://opulentis-miniapps.example/poem",
+    "distHomeUrl": "https://chain-poem-weaver.vercel.app/poem",
+    "canonicalDomain": "chain-poem-weaver.vercel.app"
+  },
+  "authAndProvenance": {
+    "quickAuthFailClosedExpected": true,
+    "provenanceRequiresQuickAuth": true,
+    "mintAllowed": false,
+    "serverSignatureEnv": "CHAIN_POEM_PROVENANCE_SECRET",
+    "checks": {
+      "quickAuthApi": {
+        "ok": true,
+        "missing": []
+      },
+      "provenanceApi": {
+        "ok": true,
+        "missing": []
+      },
+      "lineReceiptMintPlan": {
+        "ok": true,
+        "missing": []
+      },
+      "lineReceiptContract": {
+        "ok": true,
+        "missing": []
+      },
+      "frontendAuth": {
+        "ok": true,
+        "missing": []
+      }
+    }
+  },
+  "lineReceiptMint": {
+    "standard": "ERC-1155",
+    "chainId": 8453,
+    "network": "base",
+    "enabled": false,
+    "mintAllowed": false,
+    "contractReadinessPath": "data/line-receipt-contract-readiness.json",
+    "contractReady": true,
+    "deployReady": false,
+    "requiredBeforeLiveMint": [
+      "CHAIN_POEM_LINE_RECEIPT_CONTRACT",
+      "CHAIN_POEM_LINE_RECEIPT_SIGNER",
+      "CHAIN_POEM_LINE_RECEIPT_BASE_URI",
+      "wallet ownership verification",
+      "operator approval"
+    ],
+    "warnings": [
+      "line_receipt_contract_address_missing_live_mint_disabled",
+      "line_receipt_signer_missing_live_mint_disabled",
+      "line_receipt_base_uri_missing_live_mint_disabled"
+    ]
+  },
+  "clientVerification": {
+    "requiredAfterLiveDeploy": true,
+    "ok": false,
+    "checkPath": "data/client-verification-check.json",
+    "receiptPath": "data/client-verification.json",
+    "failures": [
+      "client_verification_receipt_missing"
+    ],
+    "next": "After live HTTPS deploy, fill data/client-verification.json from data/client-verification.template.json and rerun npm run test:client-verification."
+  },
+  "hosting": {
+    "provider": "vercel",
+    "checkPath": "data/hosting-config-check.json",
+    "requiredBeforeLiveDeploy": true,
+    "ok": true
+  },
+  "hashes": {
+    "source": [
+      {
+        "file": "package.json",
+        "exists": true,
+        "bytes": 3947,
+        "sha256": "96b4a5243cf144667cbfb6fc440d7301f220ee3dd9d40f69113d5ca46e54956b"
+      },
+      {
+        "file": "package-lock.json",
+        "exists": true,
+        "bytes": 13724,
+        "sha256": "3f117487951dca5e4775edde33bcd3a33bb32b8458a17181011b5603c6ab2528"
+      },
+      {
+        "file": "index.html",
+        "exists": true,
+        "bytes": 6795,
+        "sha256": "bf7424dd1c71d522b85ead343c2f8396f4ee7407636d8d5bd5b07423c1d32da9"
+      },
+      {
+        "file": ".well-known/farcaster.json",
+        "exists": true,
+        "bytes": 516,
+        "sha256": "477b27f6f30ba5a32d2ee03335b4f2f09a4a265a920c850008e9d30ecfdcfd86"
+      },
+      {
+        "file": "api/me.mjs",
+        "exists": true,
+        "bytes": 2263,
+        "sha256": "605abdf0a9a5e719f815119eda1f65c9e803f0da22c31426cba17f84b7755c5d"
+      },
+      {
+        "file": "api/provenance.mjs",
+        "exists": true,
+        "bytes": 15346,
+        "sha256": "c5652cc94984823e9153e73fe64e2d224be7d8abfe229ffe8832c1d96771961f"
+      },
+      {
+        "file": "contracts/ChainPoemLineReceipts.sol",
+        "exists": true,
+        "bytes": 3796,
+        "sha256": "a4e855fb2b91a680e9cf0ee66973e2adab4002cfb0f64caeff1b84f77c12ae41"
+      },
+      {
+        "file": "src/main.js",
+        "exists": true,
+        "bytes": 40192,
+        "sha256": "0cacfa31304f2b6f1ab3228f0dbcda5f279d7c5afb27dbd2448798d91e9cffe5"
+      },
+      {
+        "file": "src/poem.js",
+        "exists": true,
+        "bytes": 14428,
+        "sha256": "b2dc1b60b93a35e6a7a433621968058f348a2591d75516a791460836286b96ee"
+      },
+      {
+        "file": "src/styles.css",
+        "exists": true,
+        "bytes": 15531,
+        "sha256": "9996a606c4ac840bb1b8f4e1837a1eb2c756a6901ff0414f2ad5e920ce1742ce"
+      },
+      {
+        "file": "scripts/build-static.mjs",
+        "exists": true,
+        "bytes": 7050,
+        "sha256": "d394ed2fcd1999c9a57203c576405c64cff4b2758a547cd17e7d6473e2b8bc04"
+      },
+      {
+        "file": "scripts/deploy-target-check.mjs",
+        "exists": true,
+        "bytes": 6032,
+        "sha256": "b5cc01aea4c87304a44d80ece77b7465a3f608d8422b157ca125f489fe7c58bd"
+      },
+      {
+        "file": "scripts/deploy-production.mjs",
+        "exists": true,
+        "bytes": 5636,
+        "sha256": "bb7afd365e27f37f97eec9907cffe86b85515c87b08a15f2f352f86533be7205"
+      },
+      {
+        "file": "scripts/operator-release-brief.mjs",
+        "exists": true,
+        "bytes": 9173,
+        "sha256": "5913070b73210679c28b34d2706edec19b2ed0dab63f808d7c1d20a7383086b8"
+      },
+      {
+        "file": "scripts/manifest-assert.mjs",
+        "exists": true,
+        "bytes": 7306,
+        "sha256": "330a1f2ba86ca048ef54d5a87988df62ece63ea0ebe039c790f5bb69f0835c1c"
+      },
+      {
+        "file": "scripts/base-standard-web-check.mjs",
+        "exists": true,
+        "bytes": 4643,
+        "sha256": "80b08082ca8d4225dd7b8cfa5a536455eac2aa76868e93549857f504b66ef6c6"
+      },
+      {
+        "file": "scripts/hosting-config-check.mjs",
+        "exists": true,
+        "bytes": 6377,
+        "sha256": "c6c93a9af3e653f76ab358f78ab204554dbd1fa877fd82722b975063e5aeabbc"
+      },
+      {
+        "file": "scripts/production-rehearsal-check.mjs",
+        "exists": true,
+        "bytes": 4681,
+        "sha256": "3fac4550307e2527ea4561fc88c2570d2b2118fa48693678ee13b75e3568c84a"
+      },
+      {
+        "file": "scripts/client-verification-check.mjs",
+        "exists": true,
+        "bytes": 6850,
+        "sha256": "f4884436294e6ff8cfb33a69d24c523a6d7d2e0f2ea1882200081058cc9ec54d"
+      },
+      {
+        "file": "scripts/deploy-preflight.mjs",
+        "exists": true,
+        "bytes": 6575,
+        "sha256": "ec45a13df29c9fa546ee1d97fe5b05a2cdf7c1c6beb2c27a96a944c52ea6e994"
+      },
+      {
+        "file": "scripts/verify-deployment.mjs",
+        "exists": true,
+        "bytes": 15490,
+        "sha256": "2f0d0ba569bf885f2193a74b864799badefe8a8191597d31a2794952864fa60e"
+      },
+      {
+        "file": "scripts/api-fail-closed-check.mjs",
+        "exists": true,
+        "bytes": 2180,
+        "sha256": "0f6fcb11e0af60b56fa3ae8fdc5bf97fb99bca9a7186638a1471f4e767810e73"
+      },
+      {
+        "file": "scripts/provenance-canonical-check.mjs",
+        "exists": true,
+        "bytes": 6880,
+        "sha256": "5cbc3602bfca15d7ded1c3354c477edeacf852f715fad3a247f02c0701ed1fdf"
+      },
+      {
+        "file": "scripts/line-receipt-contract-check.mjs",
+        "exists": true,
+        "bytes": 3702,
+        "sha256": "082e77194d1217e0a705781f3a14c3860a773ee1b6a71242ab4ddfdfb2d7941c"
+      },
+      {
+        "file": "scripts/release-packet.mjs",
+        "exists": true,
+        "bytes": 11746,
+        "sha256": "28057edc01479e6044ce42f487d70f09f12e9a34fac8ccb26326b4d58741b47b"
+      },
+      {
+        "file": "assets/chain-poem-icon.png",
+        "exists": true,
+        "bytes": 950392,
+        "sha256": "4777edb81c7b550a7333048f6231654a490ef4e88ca2c569cade48d08aaa964b"
+      },
+      {
+        "file": "assets/poem-splash.png",
+        "exists": true,
+        "bytes": 28655,
+        "sha256": "a8fa17fda06b7949403734275d7cef2356db34d059dc296ff8ec13ea9b6dcbf3"
+      },
+      {
+        "file": "assets/chain-poem-weaver.png",
+        "exists": true,
+        "bytes": 525633,
+        "sha256": "92c59380733cdd45e9135ac8c5c968432399a99ea28b3966a2e2967a7158edcb"
+      },
+      {
+        "file": "assets/chain-poem-hero.png",
+        "exists": true,
+        "bytes": 318390,
+        "sha256": "5ff032c2c33732c58ee261c350ac2a8ab16b2e42f8b5dc49c496e7d60aba636c"
+      },
+      {
+        "file": "assets/chain-poem-og.png",
+        "exists": true,
+        "bytes": 318390,
+        "sha256": "5ff032c2c33732c58ee261c350ac2a8ab16b2e42f8b5dc49c496e7d60aba636c"
+      }
+    ],
+    "dist": [
+      {
+        "file": "deployment-build.json",
+        "exists": true,
+        "bytes": 1699,
+        "sha256": "c5c0cc424d13e9c9f98fba223ce31366d37e801d278331f05d5fb420d1c94dc4"
+      },
+      {
+        "file": "package.json",
+        "exists": true,
+        "bytes": 3947,
+        "sha256": "96b4a5243cf144667cbfb6fc440d7301f220ee3dd9d40f69113d5ca46e54956b"
+      },
+      {
+        "file": "package-lock.json",
+        "exists": true,
+        "bytes": 13724,
+        "sha256": "3f117487951dca5e4775edde33bcd3a33bb32b8458a17181011b5603c6ab2528"
+      },
+      {
+        "file": "index.html",
+        "exists": true,
+        "bytes": 6824,
+        "sha256": "03a854214c881cf21daea24c55f5c2d6ac1c3efb570457a7b3b8f09eec23637b"
+      },
+      {
+        "file": ".well-known/farcaster.json",
+        "exists": true,
+        "bytes": 1409,
+        "sha256": "41fdcddf684269c33b6591e70d91bf75c24fcc22618c83a730808b31791a15ed"
+      },
+      {
+        "file": "api/me.mjs",
+        "exists": true,
+        "bytes": 2263,
+        "sha256": "605abdf0a9a5e719f815119eda1f65c9e803f0da22c31426cba17f84b7755c5d"
+      },
+      {
+        "file": "api/provenance.mjs",
+        "exists": true,
+        "bytes": 15346,
+        "sha256": "c5652cc94984823e9153e73fe64e2d224be7d8abfe229ffe8832c1d96771961f"
+      },
+      {
+        "file": "contracts/ChainPoemLineReceipts.sol",
+        "exists": true,
+        "bytes": 3796,
+        "sha256": "a4e855fb2b91a680e9cf0ee66973e2adab4002cfb0f64caeff1b84f77c12ae41"
+      },
+      {
+        "file": "src/main.js",
+        "exists": true,
+        "bytes": 40192,
+        "sha256": "0cacfa31304f2b6f1ab3228f0dbcda5f279d7c5afb27dbd2448798d91e9cffe5"
+      },
+      {
+        "file": "src/poem.js",
+        "exists": true,
+        "bytes": 14428,
+        "sha256": "b2dc1b60b93a35e6a7a433621968058f348a2591d75516a791460836286b96ee"
+      },
+      {
+        "file": "scripts/static-check.mjs",
+        "exists": true,
+        "bytes": 29247,
+        "sha256": "9279af1d3c89399188721da2972c876fb6b5d3e817d6614fefee556da315420c"
+      },
+      {
+        "file": "scripts/deploy-target-check.mjs",
+        "exists": true,
+        "bytes": 6032,
+        "sha256": "b5cc01aea4c87304a44d80ece77b7465a3f608d8422b157ca125f489fe7c58bd"
+      },
+      {
+        "file": "scripts/deploy-production.mjs",
+        "exists": true,
+        "bytes": 5636,
+        "sha256": "bb7afd365e27f37f97eec9907cffe86b85515c87b08a15f2f352f86533be7205"
+      },
+      {
+        "file": "scripts/operator-release-brief.mjs",
+        "exists": true,
+        "bytes": 9173,
+        "sha256": "5913070b73210679c28b34d2706edec19b2ed0dab63f808d7c1d20a7383086b8"
+      },
+      {
+        "file": "scripts/manifest-assert.mjs",
+        "exists": true,
+        "bytes": 7306,
+        "sha256": "330a1f2ba86ca048ef54d5a87988df62ece63ea0ebe039c790f5bb69f0835c1c"
+      },
+      {
+        "file": "scripts/base-standard-web-check.mjs",
+        "exists": true,
+        "bytes": 4643,
+        "sha256": "80b08082ca8d4225dd7b8cfa5a536455eac2aa76868e93549857f504b66ef6c6"
+      },
+      {
+        "file": "scripts/hosting-config-check.mjs",
+        "exists": true,
+        "bytes": 6377,
+        "sha256": "c6c93a9af3e653f76ab358f78ab204554dbd1fa877fd82722b975063e5aeabbc"
+      },
+      {
+        "file": "scripts/production-rehearsal-check.mjs",
+        "exists": true,
+        "bytes": 4681,
+        "sha256": "3fac4550307e2527ea4561fc88c2570d2b2118fa48693678ee13b75e3568c84a"
+      },
+      {
+        "file": "scripts/client-verification-check.mjs",
+        "exists": true,
+        "bytes": 6850,
+        "sha256": "f4884436294e6ff8cfb33a69d24c523a6d7d2e0f2ea1882200081058cc9ec54d"
+      },
+      {
+        "file": "scripts/deploy-preflight.mjs",
+        "exists": true,
+        "bytes": 6575,
+        "sha256": "ec45a13df29c9fa546ee1d97fe5b05a2cdf7c1c6beb2c27a96a944c52ea6e994"
+      },
+      {
+        "file": "scripts/verify-deployment.mjs",
+        "exists": true,
+        "bytes": 15490,
+        "sha256": "2f0d0ba569bf885f2193a74b864799badefe8a8191597d31a2794952864fa60e"
+      },
+      {
+        "file": "scripts/api-fail-closed-check.mjs",
+        "exists": true,
+        "bytes": 2180,
+        "sha256": "0f6fcb11e0af60b56fa3ae8fdc5bf97fb99bca9a7186638a1471f4e767810e73"
+      },
+      {
+        "file": "scripts/provenance-canonical-check.mjs",
+        "exists": true,
+        "bytes": 6880,
+        "sha256": "5cbc3602bfca15d7ded1c3354c477edeacf852f715fad3a247f02c0701ed1fdf"
+      },
+      {
+        "file": "scripts/line-receipt-contract-check.mjs",
+        "exists": true,
+        "bytes": 3702,
+        "sha256": "082e77194d1217e0a705781f3a14c3860a773ee1b6a71242ab4ddfdfb2d7941c"
+      },
+      {
+        "file": "scripts/release-packet.mjs",
+        "exists": true,
+        "bytes": 11746,
+        "sha256": "28057edc01479e6044ce42f487d70f09f12e9a34fac8ccb26326b4d58741b47b"
+      },
+      {
+        "file": "assets/chain-poem-icon.png",
+        "exists": true,
+        "bytes": 950392,
+        "sha256": "4777edb81c7b550a7333048f6231654a490ef4e88ca2c569cade48d08aaa964b"
+      },
+      {
+        "file": "assets/poem-splash.png",
+        "exists": true,
+        "bytes": 28655,
+        "sha256": "a8fa17fda06b7949403734275d7cef2356db34d059dc296ff8ec13ea9b6dcbf3"
+      },
+      {
+        "file": "assets/chain-poem-weaver.png",
+        "exists": true,
+        "bytes": 525633,
+        "sha256": "92c59380733cdd45e9135ac8c5c968432399a99ea28b3966a2e2967a7158edcb"
+      },
+      {
+        "file": "assets/chain-poem-hero.png",
+        "exists": true,
+        "bytes": 318390,
+        "sha256": "5ff032c2c33732c58ee261c350ac2a8ab16b2e42f8b5dc49c496e7d60aba636c"
+      },
+      {
+        "file": "assets/chain-poem-og.png",
+        "exists": true,
+        "bytes": 318390,
+        "sha256": "5ff032c2c33732c58ee261c350ac2a8ab16b2e42f8b5dc49c496e7d60aba636c"
+      }
+    ]
+  },
+  "blockers": [],
+  "warnings": [
+    "account_association_shape_only_not_cryptographic_verification",
+    "deploy_target:account_association_shape_only_not_cryptographic_verification",
+    "deploy_target:chain_poem_provenance_secret_missing_unsigned_preview_only"
+  ],
+  "next": "Deploy dist, run verify-deployment against the live origin, and perform Farcaster client Quick Auth/provenance tests."
+}

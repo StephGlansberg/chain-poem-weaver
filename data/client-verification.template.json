@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-client-verification",
+  "testedAtUtc": "2026-06-16T01:22:30.840Z",
+  "tester": "",
+  "origin": "https://chain-poem-weaver.vercel.app",
+  "farcaster": {
+    "launchedFromClient": false,
+    "launchedFromCastUrl": "",
+    "composeCastOpened": false,
+    "completedPoemShared": false,
+    "shareUrl": "",
+    "embedRenderedAsMiniApp": false,
+    "quickAuthTokenAccepted": false,
+    "provenanceHashCreated": false,
+    "evidence": {
+      "screenshotPath": "",
+      "notes": ""
+    }
+  },
+  "base": {
+    "openedAsStandardWeb": false,
+    "browserFallbackWorks": false,
+    "shareFallbackWorks": false,
+    "evidence": {
+      "screenshotPath": "",
+      "notes": ""
+    }
+  },
+  "paidMintEnabled": false,
+  "noUnexpectedWalletPrompt": false,
+  "notes": ""
+}

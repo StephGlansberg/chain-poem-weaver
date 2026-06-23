@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "poemId": "sample-ritual-door",
+  "title": "The Door Under Base",
+  "theme": "ritual",
+  "status": "open",
+  "mintStatus": "none",
+  "lines": [
+    {
+      "text": "A small green door appeared where the feed went quiet.",
+      "author": "OP",
+      "role": "opener",
+      "signal": "starter",
+      "weaveWeight": 15,
+      "createdAtUtc": "2026-06-14T00:00:00Z"
+    }
+  ]
+}

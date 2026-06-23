@@ -1,0 +1,788 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0a08;
+  --bg-deep: #060504;
+  --gold: #d9b878;
+  --gold-bright: #ecca85;
+  --gold-dim: #9a7f4a;
+  --ink: #f1e8d4;
+  --muted: #a99c7f;
+  --faint: #8a7d62;
+  --line: rgba(217, 184, 120, 0.16);
+  --line-strong: rgba(217, 184, 120, 0.34);
+  --panel: rgba(18, 16, 11, 0.66);
+  --panel-solid: #110f0a;
+  font-family: ui-serif, Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background:
+    radial-gradient(120% 60% at 50% -8%, rgba(217, 184, 120, 0.12), transparent 60%),
+    radial-gradient(80% 50% at 50% 120%, rgba(154, 127, 74, 0.1), transparent 60%),
+    var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Faint woven threads anchored to the base of the screen, echoing the logo. */
+.weave-field {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(150%, 760px);
+  color: var(--gold);
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.weave-field svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.weave-field .weave-threads path {
+  stroke-dasharray: 1 0;
+}
+
+.ritual-shell {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 432px);
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: max(22px, env(safe-area-inset-top)) 22px max(26px, env(safe-area-inset-bottom));
+  display: grid;
+  align-items: center;
+}
+
+.wallet-action {
+  position: fixed;
+  z-index: 4;
+  top: max(14px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+  width: auto;
+  min-width: 112px;
+  min-height: 38px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 999px;
+  border-color: rgba(217, 184, 120, 0.42);
+  background: rgba(11, 10, 8, 0.78);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(10px);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.wallet-action.connected {
+  min-width: 134px;
+  color: var(--gold-bright);
+  border-color: rgba(217, 184, 120, 0.58);
+}
+
+.wallet-action.connected::before {
+  content: "";
+  width: 12px;
+  height: 16px;
+  flex: 0 0 auto;
+  border-left: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  border-radius: 0 0 0 9px;
+  transform: skewX(-18deg) rotate(-12deg);
+  box-shadow: inset 3px -3px 0 rgba(217, 184, 120, 0.18);
+  opacity: 0.92;
+}
+
+body.has-poem .ritual-shell {
+  align-items: start;
+  padding-top: 30px;
+}
+
+.ritual {
+  display: grid;
+  gap: 18px;
+  animation: fadeUp 700ms ease both;
+}
+
+/* ---- brand ---- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-glyph {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 38px;
+  color: var(--gold);
+}
+
+.brand-glyph svg {
+  width: 100%;
+  height: 100%;
+}
+
+.quill-feather {
+  fill: url(#none);
+  fill: var(--gold);
+}
+
+.brand-glyph .quill-feather {
+  fill: var(--gold);
+}
+
+.brand-glyph .quill-spine {
+  fill: none;
+  stroke: var(--gold-dim);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--gold);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* ---- type ---- */
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(32px, 11vw, 40px);
+  line-height: 1.04;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.lede {
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.intro-panel {
+  display: grid;
+  gap: 13px;
+}
+
+.intro-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15.5px;
+  line-height: 1.55;
+}
+
+.intro-panel .fine,
+.fine {
+  color: var(--faint);
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+}
+
+.input-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+/* ---- entry form ---- */
+.ritual-form {
+  display: grid;
+  gap: 16px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+textarea {
+  width: 100%;
+  min-height: 84px;
+  border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 24px;
+  line-height: 1.3;
+  padding: 10px 2px;
+  resize: none;
+  transition: border-color 240ms ease;
+  caret-color: var(--gold);
+}
+
+textarea:focus {
+  border-bottom-color: var(--gold);
+}
+
+textarea::placeholder {
+  color: #5b5340;
+  font-style: italic;
+}
+
+/* live count for the trace input — quiet until you approach the limit */
+.char-count {
+  margin: -6px 0 0;
+  justify-self: end;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--faint);
+  opacity: 0.7;
+  transition: color 220ms ease, opacity 220ms ease;
+}
+
+.char-count.near-limit {
+  color: var(--gold);
+  opacity: 1;
+}
+
+.char-count.at-limit {
+  color: #d98a6a;
+  opacity: 1;
+}
+
+/* ---- buttons ---- */
+button {
+  min-height: 46px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0 18px;
+  cursor: pointer;
+  transition: border-color 200ms ease, background-color 200ms ease, transform 120ms ease, color 200ms ease;
+}
+
+button:hover {
+  border-color: var(--gold);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+.primary-action {
+  justify-self: start;
+  padding: 0 26px;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  border-color: transparent;
+  color: #1c1505;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.primary-action:hover {
+  background: linear-gradient(180deg, #f4d796, var(--gold-bright));
+  border-color: transparent;
+}
+
+#submitButton:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+button:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: default;
+}
+
+.reveal-action {
+  justify-self: stretch;
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+  animation: breathe 3.6s ease-in-out infinite;
+}
+
+/* ---- status ---- */
+.ritual-status,
+.context-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+}
+
+/* ---- spinner ---- */
+.spin-panel {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 22px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  text-align: center;
+}
+
+.spin-panel p {
+  margin: 0;
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+}
+
+.spinner {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border: 2px solid rgba(217, 184, 120, 0.18);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-quill {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* ---- poem card ---- */
+.poem-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  backdrop-filter: blur(2px);
+  padding: 20px 18px;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.poem-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.5;
+}
+
+.poem-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--gold-dim);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 14px 0 4px;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* the loom: six thread slots that fill as the weave forms */
+.weave-loom {
+  display: grid;
+  gap: 6px;
+  margin: 14px 0 4px;
+  position: relative;
+  min-height: 44px;
+  overflow: hidden;
+}
+
+.weave-loom span {
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(217, 184, 120, 0.14);
+  transform-origin: left center;
+}
+
+.weave-loom::before,
+.weave-loom::after {
+  content: "";
+  position: absolute;
+  inset: 6px 18%;
+  border-top: 1px solid rgba(217, 184, 120, 0.28);
+  border-bottom: 1px solid rgba(217, 184, 120, 0.2);
+  transform: skewY(-13deg);
+  opacity: 0;
+}
+
+.weave-loom::after {
+  transform: skewY(13deg);
+}
+
+body.is-held .weave-loom::before {
+  animation: weaveCrossA 3.1s ease-in-out infinite;
+}
+
+body.is-held .weave-loom::after {
+  animation: weaveCrossB 3.1s ease-in-out infinite 0.35s;
+}
+
+body.is-held .weave-loom span:first-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+  animation: threadPulse 2.4s ease-in-out infinite;
+}
+
+body.is-held .weave-loom span:not(:first-child) {
+  animation: threadWait 2.8s ease-in-out infinite;
+}
+
+body.is-held .weave-loom span:nth-child(2) { animation-delay: 0.3s; }
+body.is-held .weave-loom span:nth-child(3) { animation-delay: 0.6s; }
+body.is-held .weave-loom span:nth-child(4) { animation-delay: 0.9s; }
+body.is-held .weave-loom span:nth-child(5) { animation-delay: 1.2s; }
+body.is-held .weave-loom span:nth-child(6) { animation-delay: 1.5s; }
+
+/* once revealed, the loom recedes — the lines themselves carry the weave */
+body:not(.is-held) .weave-loom {
+  display: none;
+}
+
+ol#lineList {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+  counter-reset: line;
+}
+
+#lineList li {
+  position: relative;
+  padding-left: 26px;
+  line-height: 1.45;
+  counter-increment: line;
+}
+
+#lineList li::before {
+  content: counter(line);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  font-size: 11px;
+  color: var(--gold-dim);
+}
+
+#lineList li span {
+  display: block;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+#lineList li small {
+  display: block;
+  margin-top: 4px;
+  color: var(--faint);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+/* preview (not-yet-real) lines read quieter than sealed ones */
+#lineList li.is-preview span {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.empty,
+.match-note {
+  margin: 14px 0 0;
+  color: var(--faint);
+  font-size: 12.5px;
+  line-height: 1.5;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+}
+
+.held-hint {
+  margin: 14px 0 0;
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.held-hint::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 1.9s ease-in-out infinite;
+  flex: none;
+}
+
+.wait-panel {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+  padding: 14px 0 2px;
+  border-top: 1px solid var(--line);
+}
+
+.wait-panel p {
+  margin: 0;
+}
+
+.wait-step {
+  color: var(--gold-dim);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.wait-main {
+  color: var(--ink);
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.wait-need {
+  color: var(--gold);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.wait-note {
+  color: var(--faint);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.rise-in {
+  animation: riseIn 640ms cubic-bezier(0.2, 0.65, 0.25, 1) both;
+}
+
+/* ---- actions ---- */
+.actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.actions button {
+  min-height: 44px;
+  font-size: 13px;
+  padding: 0 8px;
+}
+
+.wide-action {
+  width: 100%;
+}
+
+/* ---- provenance / NFT panel ---- */
+.provenance-panel {
+  display: grid;
+  gap: 12px;
+  padding: 18px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(12, 11, 7, 0.5);
+}
+
+.provenance-heading {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+}
+
+.provenance-result {
+  display: grid;
+  gap: 12px;
+  padding-top: 4px;
+  border-top: 1px solid var(--line);
+}
+
+.provenance-hash {
+  margin: 0;
+  display: grid;
+  gap: 3px;
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+}
+
+.provenance-hash .label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.provenance-hash .value {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  font-size: 12px;
+  color: var(--ink);
+  word-break: break-all;
+}
+
+.receipt-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.receipt-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: rgba(217, 184, 120, 0.03);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+}
+
+.receipt-list .receipt-line {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.receipt-list .receipt-meta {
+  font-size: 11px;
+  color: var(--faint);
+  text-align: right;
+  flex: none;
+}
+
+.provenance-gate {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+  font-family: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+}
+
+.provenance-gate .lock {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--gold-dim);
+  flex: none;
+}
+
+/* ---- keyframes ---- */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.65); }
+}
+
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 184, 120, 0); }
+  50% { box-shadow: 0 0 22px 0 rgba(217, 184, 120, 0.28); }
+}
+
+@keyframes threadPulse {
+  0%, 100% { opacity: 1; transform: scaleX(1); }
+  50% { opacity: 0.55; transform: scaleX(0.92); }
+}
+
+@keyframes threadWait {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; background: rgba(217, 184, 120, 0.28); }
+}
+
+@keyframes weaveCrossA {
+  0%, 100% { opacity: 0; transform: translateX(-18%) skewY(-13deg); }
+  35%, 70% { opacity: 0.72; transform: translateX(0) skewY(-13deg); }
+}
+
+@keyframes weaveCrossB {
+  0%, 100% { opacity: 0; transform: translateX(18%) skewY(13deg); }
+  35%, 70% { opacity: 0.58; transform: translateX(0) skewY(13deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .ritual { animation: none; }
+}

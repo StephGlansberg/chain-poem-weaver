@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-deploy-target-readiness",
+  "generatedAtUtc": "2026-06-23T23:47:01.911Z",
+  "ok": true,
+  "origin": "https://chain-poem-weaver.vercel.app",
+  "domain": "chain-poem-weaver.vercel.app",
+  "env": {
+    "MINIAPP_ORIGIN": true,
+    "FARCASTER_ACCOUNT_ASSOCIATION_HEADER": true,
+    "FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD": true,
+    "FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE": true,
+    "CHAIN_POEM_PROVENANCE_SECRET": false,
+    "VERCEL_TOKEN": true,
+    "CLOUDFLARE_API_TOKEN": false,
+    "NETLIFY_AUTH_TOKEN": false
+  },
+  "tools": {
+    "npx": true,
+    "vercel": false,
+    "wrangler": false,
+    "netlify": false
+  },
+  "providers": [
+    {
+      "id": "vercel",
+      "serverCapableForCurrentApi": true,
+      "cliPresent": true,
+      "tokenPresent": true,
+      "ready": true,
+      "deployCommand": "npx vercel@latest deploy --prod --token %VERCEL_TOKEN%",
+      "note": "Best current fit for api/*.mjs serverless routes and /poem rewrite. npx is enough when a token is configured."
+    },
+    {
+      "id": "cloudflare-pages",
+      "serverCapableForCurrentApi": false,
+      "cliPresent": false,
+      "tokenPresent": false,
+      "ready": false,
+      "deployCommand": "wrangler pages deploy dist",
+      "note": "Static Pages alone will not run current Node-style api/*.mjs routes without a Pages Functions adapter."
+    },
+    {
+      "id": "netlify",
+      "serverCapableForCurrentApi": false,
+      "cliPresent": false,
+      "tokenPresent": false,
+      "ready": false,
+      "deployCommand": "netlify deploy --prod --dir dist",
+      "note": "Needs function adapter before current api/*.mjs routes are live."
+    }
+  ],
+  "preferredProvider": "vercel",
+  "blockers": [],
+  "warnings": [
+    "account_association_shape_only_not_cryptographic_verification",
+    "chain_poem_provenance_secret_missing_unsigned_preview_only"
+  ],
+  "next": "Build production dist and deploy with npx vercel@latest deploy --prod --token %VERCEL_TOKEN%."
+}

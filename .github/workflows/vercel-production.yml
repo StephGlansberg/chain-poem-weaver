@@ -1,0 +1,75 @@
+name: Vercel Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: true
+
+jobs:
+  proof-gated-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Static checks
+        run: npm test
+        env:
+          MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
+
+      - name: Build production
+        run: npm run build:production
+        env:
+          MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
+
+      - name: Dist checks
+        run: npm run test:dist
+        env:
+          MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
+
+      - name: Client proof gate
+        run: npm run test:client-verification
+        env:
+          MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
+
+      - name: Five-FID proof gate
+        run: npm run test:six-fid
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Vercel build
+        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
+
+      - name: Vercel deploy
+        run: vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}

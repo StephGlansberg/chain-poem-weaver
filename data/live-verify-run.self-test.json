@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-live-verify-run",
+  "ok": true,
+  "generatedAtUtc": "2026-06-23T21:13:17.912Z",
+  "mode": "self-test",
+  "origin": "https://poems.opulentis.ai",
+  "manifestHomeUrl": "https://poems.opulentis.ai/poem",
+  "embedActionUrl": "https://poems.opulentis.ai/poem",
+  "canonicalDomain": "poems.opulentis.ai",
+  "checks": [
+    {
+      "label": "home:/poem",
+      "url": "https://poems.opulentis.ai/poem",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "label": "manifest",
+      "url": "https://poems.opulentis.ai/.well-known/farcaster.json",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "label": "asset:https://poems.opulentis.ai/assets/chain-poem-icon.png",
+      "url": "https://poems.opulentis.ai/assets/chain-poem-icon.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "4"
+    },
+    {
+      "label": "asset:https://poems.opulentis.ai/assets/chain-poem-weaver.png",
+      "url": "https://poems.opulentis.ai/assets/chain-poem-weaver.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "4"
+    },
+    {
+      "label": "asset:https://poems.opulentis.ai/assets/poem-splash.png",
+      "url": "https://poems.opulentis.ai/assets/poem-splash.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "4"
+    },
+    {
+      "label": "asset:https://poems.opulentis.ai/assets/chain-poem-hero.png",
+      "url": "https://poems.opulentis.ai/assets/chain-poem-hero.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "4"
+    },
+    {
+      "label": "asset:https://poems.opulentis.ai/assets/chain-poem-og.png",
+      "url": "https://poems.opulentis.ai/assets/chain-poem-og.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "4"
+    },
+    {
+      "label": "auth:/api/me",
+      "url": "https://poems.opulentis.ai/api/me",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store"
+    },
+    {
+      "label": "auth:/api/provenance",
+      "url": "https://poems.opulentis.ai/api/provenance",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store"
+    },
+    {
+      "label": "auth:/api/random-weave",
+      "url": "https://poems.opulentis.ai/api/random-weave",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store"
+    },
+    {
+      "label": "auth:/api/admin-moderation",
+      "url": "https://poems.opulentis.ai/api/admin-moderation",
+      "status": 503,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store"
+    }
+  ],
+  "failures": [],
+  "warnings": [],
+  "next": "Live deployment shape passed. Finish the manual Farcaster/Base client Quick Auth test."
+}

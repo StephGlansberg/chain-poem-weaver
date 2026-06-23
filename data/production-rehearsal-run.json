@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-production-rehearsal-run",
+  "generatedAtUtc": "2026-06-23T21:13:26.887Z",
+  "ok": false,
+  "tempRoot": null,
+  "origin": "https://rehearsal-chain-poem.opulentis.ai",
+  "copied": [
+    "index.html",
+    "package.json",
+    "package-lock.json",
+    "favicon.svg",
+    "manifest.webmanifest",
+    "vercel.json",
+    ".well-known",
+    "api",
+    "assets",
+    "contracts",
+    "data",
+    "src",
+    "scripts"
+  ],
+  "rehearsal": {
+    "ok": false,
+    "mode": "dry-run",
+    "origin": "https://rehearsal-chain-poem.opulentis.ai",
+    "stepSummary": [
+      {
+        "name": "deploy-target-check",
+        "ok": true,
+        "exitCode": 0
+      },
+      {
+        "name": "build-production",
+        "ok": false,
+        "exitCode": 1
+      },
+      {
+        "name": "release-packet-strict",
+        "ok": false,
+        "exitCode": 1
+      },
+      {
+        "name": "preflight-deploy",
+        "ok": false,
+        "exitCode": 1
+      },
+      {
+        "name": "manifest-assert-production",
+        "ok": false,
+        "exitCode": 1
+      },
+      {
+        "name": "base-standard-web-check",
+        "ok": false,
+        "exitCode": 1
+      },
+      {
+        "name": "hosting-config-check",
+        "ok": false,
+        "exitCode": 1
+      },
+      {
+        "name": "static-check-production",
+        "ok": false,
+        "exitCode": 1
+      }
+    ],
+    "blockers": [
+      "build_production_failed",
+      "release_packet_strict_failed",
+      "preflight_deploy_failed",
+      "production_manifest_assert_failed",
+      "base_standard_web_check_failed",
+      "hosting_config_check_failed",
+      "production_static_check_failed"
+    ],
+    "warnings": [
+      "account_association_shape_only_not_cryptographic_verification"
+    ]
+  },
+  "failures": [
+    "build_production_failed",
+    "release_packet_strict_failed",
+    "preflight_deploy_failed",
+    "production_manifest_assert_failed",
+    "base_standard_web_check_failed",
+    "hosting_config_check_failed",
+    "production_static_check_failed",
+    "rehearsal_base_standard_web_step_missing_or_failed",
+    "rehearsal_hosting_config_step_missing_or_failed",
+    "rehearsal_release_packet_step_missing_or_failed",
+    "rehearsal_manifest_assert_step_missing_or_failed",
+    "rehearsal_preflight_step_missing_or_failed",
+    "rehearsal_static_check_step_missing_or_failed"
+  ],
+  "warnings": [
+    "account_association_shape_only_not_cryptographic_verification"
+  ],
+  "next": "Fix rehearsal failures before asking the operator for production credentials."
+}

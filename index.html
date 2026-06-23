@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Poem Weaver — leave a trace</title>
+    <meta name="description" content="Leave one small line. Return later to find whether strangers wove it into something you did not plan together." />
+    <meta name="theme-color" content="#0b0a08" />
+    <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://opulentis-miniapps.example/chain-poem-weaver.png","button":{"title":"Leave a trace","action":{"type":"launch_frame","name":"Poem Weaver","url":"https://opulentis-miniapps.example/poem","splashImageUrl":"https://opulentis-miniapps.example/poem-splash.png","splashBackgroundColor":"#0b0a08"}}}' />
+    <meta property="og:title" content="Poem Weaver" />
+    <meta property="og:description" content="A quiet Farcaster ritual. Leave a trace. Let strangers complete the weave." />
+    <meta property="og:image" content="https://opulentis-miniapps.example/chain-poem-og.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/chain-poem-icon.png" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body class="intro-view">
+    <div class="weave-field" aria-hidden="true">
+      <svg viewBox="0 0 320 160" preserveAspectRatio="xMidYMid meet" focusable="false">
+        <g class="weave-threads" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <path d="M40 132 C 110 96, 210 96, 280 132" />
+          <path d="M40 132 C 110 168, 210 168, 280 132" />
+          <path d="M60 112 C 130 88, 190 88, 260 112" />
+          <path d="M60 152 C 130 176, 190 176, 260 152" />
+          <path d="M24 124 H 296" />
+          <path d="M24 140 H 296" />
+        </g>
+      </svg>
+    </div>
+
+    <main class="ritual-shell">
+      <button id="walletButton" class="wallet-action" type="button" hidden>connect wallet</button>
+      <section class="ritual" aria-labelledby="appTitle">
+        <header class="brand">
+          <span class="brand-glyph" aria-hidden="true">
+            <svg viewBox="0 0 48 64" focusable="false">
+              <path class="quill-feather" d="M33 6c-10 4-17 13-19 24-1 6-1 11 0 16l3-3c0-4 .4-8 1.6-12 2-7 6.6-13 13.4-17-5.6 5-9.2 10.6-11 17-1 3.6-1.4 7.2-1.4 10.6l4-4c.4-3 1.2-6 2.4-9 2.4-6 6.2-11 10-15-1.6-4.4-2-8.2-3-13.2z"/>
+              <path class="quill-spine" d="M14 60c2-9 6-17 12-24" />
+            </svg>
+          </span>
+          <p class="eyebrow">Poem Weaver</p>
+        </header>
+
+        <h1 id="appTitle">leave a trace</h1>
+
+        <!-- Phase 1 — intro / consent -->
+        <div id="introPanel" class="intro-panel">
+          <p class="lede">Leave one small thing. Walk away.</p>
+          <p>Later, return to find whether strangers — who never met you, never planned with you — completed it into a poem.</p>
+          <p class="fine">Nothing is posted yet. You decide when, and whether, to open it.</p>
+          <button id="startButton" class="primary-action" type="button">begin</button>
+        </div>
+
+        <!-- Phase 2 — trace / entry -->
+        <p class="input-hint">one line. it will find what answers.</p>
+        <form id="weaveForm" class="ritual-form">
+          <label class="sr-only" for="phraseInput">Your line</label>
+          <textarea id="phraseInput" maxlength="120" rows="2" placeholder="type something small" autocomplete="off"></textarea>
+          <p id="charCount" class="char-count" aria-hidden="true" hidden>120</p>
+          <button id="submitButton" class="primary-action" type="submit" disabled>seal it</button>
+        </form>
+
+        <p id="walletStatus" class="wallet-status fine" hidden></p>
+
+        <p id="statusText" class="ritual-status" role="status" aria-live="polite">waiting</p>
+
+        <!-- spinner shared by seal + reveal -->
+        <div id="spinPanel" class="spin-panel" role="status" aria-live="polite" hidden>
+          <div class="spinner" aria-hidden="true">
+            <span class="spinner-quill"></span>
+          </div>
+          <p id="spinLabel">finding the others</p>
+        </div>
+
+        <!-- Phase 3/4 — unseen thread (held) then preview (revealed) -->
+        <article id="poemCard" class="poem-card" hidden>
+          <div class="poem-topline">
+            <span id="poemTheme">unseen thread</span>
+            <span id="poemCount">waiting</span>
+          </div>
+          <h2 id="poemTitle">not revealed yet</h2>
+
+          <div id="weaveLoom" class="weave-loom" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+
+          <div id="waitPanel" class="wait-panel" hidden>
+            <p id="waitNeed" class="wait-need">5 more voices and it opens.</p>
+            <p class="wait-note">Share it so the others can find their way in.</p>
+          </div>
+
+          <ol id="lineList"></ol>
+          <p id="emptyState" class="empty">small is enough</p>
+          <p id="heldHint" class="held-hint" hidden>listening for the others</p>
+          <p id="matchNote" class="match-note"></p>
+        </article>
+
+        <button id="revealButton" class="primary-action reveal-action" type="button" hidden>open the weave</button>
+
+        <div id="actions" class="actions" hidden>
+          <button id="shareButton" type="button">Share</button>
+          <button id="copyButton" type="button">Copy link</button>
+          <button id="resetButton" type="button">Simulate weave</button>
+        </div>
+
+        <!-- Provenance / NFT — only shown when actionable; never a dead control -->
+        <section id="provenancePanel" class="provenance-panel" aria-labelledby="provenanceHeading" hidden>
+          <h3 id="provenanceHeading" class="provenance-heading">keep this weave</h3>
+          <p id="contextText" class="context-note">A hidden lane is listening.</p>
+          <button id="verifyButton" class="wide-action" type="button" hidden>Verify Farcaster session</button>
+          <button id="provenanceButton" class="wide-action" type="button" hidden>Seal provenance</button>
+          <div id="provenanceResult" class="provenance-result" hidden>
+            <p class="provenance-hash"><span class="label">poem hash</span><span id="provenanceHash" class="value">—</span></p>
+            <ol id="receiptList" class="receipt-list"></ol>
+            <p class="provenance-gate"><span class="lock" aria-hidden="true"></span><span id="provenanceGate">Minting stays disabled until an operator approves it.</span></p>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

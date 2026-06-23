@@ -1,0 +1,8 @@
+{
+  "domain": "chain-poem-weaver.vercel.app",
+  "accountAssociation": {
+    "header": "eyJmaWQiOjM5MDg0OSwidHlwZSI6ImF1dGgiLCJrZXkiOiIweEY2ZUQ0ZUU0OTBGN2M1MzA2MzFjODhGNTRDQ2FlYjM4NTY3ZTdlNGIifQ",
+    "payload": "eyJkb21haW4iOiJjaGFpbi1wb2VtLXdlYXZlci52ZXJjZWwuYXBwIn0",
+    "signature": "2FrfN77kxmVI0wiEJun6M178fHLRi5DvUiSvYs6piXAZsj4MAJ0KGxD8ERlznuOxxQRIpH1RCZfQw4jr+yyiIxw="
+  }
+}

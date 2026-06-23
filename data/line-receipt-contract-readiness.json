@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-line-receipt-contract-readiness",
+  "generatedAtUtc": "2026-06-23T23:46:39.055Z",
+  "ok": true,
+  "deployReady": false,
+  "contractPath": "contracts/ChainPoemLineReceipts.sol",
+  "standard": "ERC-1155",
+  "chainId": 8453,
+  "network": "base",
+  "env": {
+    "CHAIN_POEM_LINE_RECEIPT_CONTRACT": false,
+    "CHAIN_POEM_LINE_RECEIPT_SIGNER": false,
+    "CHAIN_POEM_LINE_RECEIPT_BASE_URI": false
+  },
+  "failures": [],
+  "warnings": [
+    "line_receipt_contract_address_missing_live_mint_disabled",
+    "line_receipt_signer_missing_live_mint_disabled",
+    "line_receipt_base_uri_missing_live_mint_disabled"
+  ],
+  "next": "Contract scaffold is present. Keep live mint disabled until contract address, signer, base URI, wallet ownership, and operator approval exist."
+}

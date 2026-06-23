@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-hosting-config-check",
+  "generatedAtUtc": "2026-06-23T23:47:00.067Z",
+  "ok": true,
+  "provider": "vercel",
+  "checks": [
+    {
+      "label": "vercel_json_exists",
+      "ok": true
+    },
+    {
+      "label": "package_json_exists",
+      "ok": true
+    },
+    {
+      "label": "api_me_exists",
+      "ok": true
+    },
+    {
+      "label": "api_provenance_exists",
+      "ok": true
+    },
+    {
+      "label": "api_random_weave_exists",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_metadata_exists",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_image_exists",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_claim_exists",
+      "ok": true
+    },
+    {
+      "label": "vercel_build_command_production",
+      "ok": true
+    },
+    {
+      "label": "vercel_install_command_npm",
+      "ok": true
+    },
+    {
+      "label": "vercel_dev_command_static_server",
+      "ok": true
+    },
+    {
+      "label": "vercel_output_directory_dist",
+      "ok": true
+    },
+    {
+      "label": "vercel_clean_urls_enabled",
+      "ok": true
+    },
+    {
+      "label": "well_known_manifest_json_header",
+      "ok": true
+    },
+    {
+      "label": "poem_rewrite_present",
+      "ok": true
+    },
+    {
+      "label": "poem_nested_rewrite_present",
+      "ok": true
+    },
+    {
+      "label": "package_build_production_script",
+      "ok": true
+    },
+    {
+      "label": "package_deploy_live_script",
+      "ok": true
+    },
+    {
+      "label": "package_verify_deployment_script",
+      "ok": true
+    },
+    {
+      "label": "api_me_default_handler",
+      "ok": true
+    },
+    {
+      "label": "api_me_no_store",
+      "ok": true
+    },
+    {
+      "label": "api_me_json_content_type",
+      "ok": true
+    },
+    {
+      "label": "api_provenance_default_handler",
+      "ok": true
+    },
+    {
+      "label": "api_provenance_no_store",
+      "ok": true
+    },
+    {
+      "label": "api_provenance_json_content_type",
+      "ok": true
+    },
+    {
+      "label": "api_provenance_body_limit",
+      "ok": true
+    },
+    {
+      "label": "api_random_weave_default_handler",
+      "ok": true
+    },
+    {
+      "label": "api_random_weave_no_store",
+      "ok": true
+    },
+    {
+      "label": "api_random_weave_json_content_type",
+      "ok": true
+    },
+    {
+      "label": "api_random_weave_body_limit",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_metadata_default_handler",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_metadata_public_cache",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_metadata_json_content_type",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_image_default_handler",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_image_public_cache",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_image_svg_content_type",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_claim_default_handler",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_claim_no_store",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_claim_json_content_type",
+      "ok": true
+    },
+    {
+      "label": "api_line_receipt_claim_env_gate",
+      "ok": true
+    }
+  ],
+  "failures": [],
+  "warnings": [],
+  "next": "Hosting config is compatible with the current Vercel/serverless deployment path."
+}

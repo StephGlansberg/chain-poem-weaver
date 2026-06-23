@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-six-fid-private-test",
+  "testedAtUtc": "2026-06-23T23:24:38.786Z",
+  "origin": "https://chain-poem-weaver.vercel.app",
+  "testers": [
+    {
+      "slot": 1,
+      "handle": "",
+      "fid": "",
+      "realNonDev": false,
+      "submittedLine": false,
+      "quickAuthWorked": false,
+      "matchedOrCompleted": false,
+      "screenshotPath": "",
+      "wantsToKeepOwnLine": false,
+      "notes": ""
+    },
+    {
+      "slot": 2,
+      "handle": "",
+      "fid": "",
+      "realNonDev": false,
+      "submittedLine": false,
+      "quickAuthWorked": false,
+      "matchedOrCompleted": false,
+      "screenshotPath": "",
+      "wantsToKeepOwnLine": false,
+      "notes": ""
+    },
+    {
+      "slot": 3,
+      "handle": "",
+      "fid": "",
+      "realNonDev": false,
+      "submittedLine": false,
+      "quickAuthWorked": false,
+      "matchedOrCompleted": false,
+      "screenshotPath": "",
+      "wantsToKeepOwnLine": false,
+      "notes": ""
+    },
+    {
+      "slot": 4,
+      "handle": "",
+      "fid": "",
+      "realNonDev": false,
+      "submittedLine": false,
+      "quickAuthWorked": false,
+      "matchedOrCompleted": false,
+      "screenshotPath": "",
+      "wantsToKeepOwnLine": false,
+      "notes": ""
+    },
+    {
+      "slot": 5,
+      "handle": "",
+      "fid": "",
+      "realNonDev": false,
+      "submittedLine": false,
+      "quickAuthWorked": false,
+      "matchedOrCompleted": false,
+      "screenshotPath": "",
+      "wantsToKeepOwnLine": false,
+      "notes": ""
+    }
+  ],
+  "completedPoem": {
+    "poemId": "",
+    "poemHash": "",
+    "shareUrl": "",
+    "castUrl": "",
+    "embedRenderedAsMiniApp": false,
+    "provenanceHashCreated": false
+  },
+  "ownershipIntent": {
+    "atLeastOneKeepOwnLine": false,
+    "notes": ""
+  },
+  "failClosedRechecked": false,
+  "mintAndTokenStillDisabled": false,
+  "evidence": {
+    "screenshotDirectory": "",
+    "castUrl": "",
+    "notes": ""
+  }
+}

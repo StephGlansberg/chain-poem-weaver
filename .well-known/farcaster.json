@@ -1,0 +1,17 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "Poem Weaver",
+    "iconUrl": "https://opulentis-miniapps.example/chain-poem-icon.png",
+    "homeUrl": "https://opulentis-miniapps.example/poem",
+    "imageUrl": "https://opulentis-miniapps.example/chain-poem-weaver.png",
+    "buttonTitle": "Leave a trace",
+    "splashImageUrl": "https://opulentis-miniapps.example/poem-splash.png",
+    "splashBackgroundColor": "#0b0a08"
+  }
+}

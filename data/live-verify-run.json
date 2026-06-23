@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-live-verify-run",
+  "ok": true,
+  "generatedAtUtc": "2026-06-21T08:13:29.218Z",
+  "mode": "live",
+  "origin": "https://chain-poem-weaver.vercel.app",
+  "manifestHomeUrl": "https://chain-poem-weaver.vercel.app/poem",
+  "embedActionUrl": "https://chain-poem-weaver.vercel.app/poem",
+  "canonicalDomain": "chain-poem-weaver.vercel.app",
+  "checks": [
+    {
+      "label": "home:/poem",
+      "url": "https://chain-poem-weaver.vercel.app/poem",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "label": "manifest",
+      "url": "https://chain-poem-weaver.vercel.app/.well-known/farcaster.json",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "label": "asset:https://chain-poem-weaver.vercel.app/assets/chain-poem-icon.png",
+      "url": "https://chain-poem-weaver.vercel.app/assets/chain-poem-icon.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "950392"
+    },
+    {
+      "label": "asset:https://chain-poem-weaver.vercel.app/assets/chain-poem-weaver.png",
+      "url": "https://chain-poem-weaver.vercel.app/assets/chain-poem-weaver.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "525633"
+    },
+    {
+      "label": "asset:https://chain-poem-weaver.vercel.app/assets/poem-splash.png",
+      "url": "https://chain-poem-weaver.vercel.app/assets/poem-splash.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "28655"
+    },
+    {
+      "label": "asset:https://chain-poem-weaver.vercel.app/assets/chain-poem-hero.png",
+      "url": "https://chain-poem-weaver.vercel.app/assets/chain-poem-hero.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "318390"
+    },
+    {
+      "label": "asset:https://chain-poem-weaver.vercel.app/assets/chain-poem-og.png",
+      "url": "https://chain-poem-weaver.vercel.app/assets/chain-poem-og.png",
+      "status": 200,
+      "contentType": "image/png",
+      "contentLength": "318390"
+    },
+    {
+      "label": "auth:/api/me",
+      "url": "https://chain-poem-weaver.vercel.app/api/me",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store"
+    },
+    {
+      "label": "auth:/api/provenance",
+      "url": "https://chain-poem-weaver.vercel.app/api/provenance",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store"
+    },
+    {
+      "label": "auth:/api/random-weave",
+      "url": "https://chain-poem-weaver.vercel.app/api/random-weave",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store"
+    },
+    {
+      "label": "auth:/api/admin-moderation",
+      "url": "https://chain-poem-weaver.vercel.app/api/admin-moderation",
+      "status": 503,
+      "contentType": "application/json; charset=utf-8",
+      "cacheControl": "no-store"
+    }
+  ],
+  "failures": [],
+  "warnings": [],
+  "next": "Live deployment shape passed. Finish the manual Farcaster/Base client Quick Auth test."
+}

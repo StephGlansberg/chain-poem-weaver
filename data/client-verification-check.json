@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-client-verification-check",
+  "generatedAtUtc": "2026-06-23T23:47:03.952Z",
+  "ok": false,
+  "receiptPath": "C:\\AEON\\Projects\\opulentis\\miniapps\\chain-poem-weaver\\data\\client-verification.json",
+  "expectedOrigin": "https://chain-poem-weaver.vercel.app",
+  "failures": [
+    "client_verification_receipt_missing"
+  ],
+  "warnings": [],
+  "next": "After live HTTPS deploy, fill data/client-verification.json from data/client-verification.template.json and rerun npm run test:client-verification."
+}

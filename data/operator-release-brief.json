@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "kind": "chain-poem-weaver-operator-release-brief",
+  "generatedAtUtc": "2026-06-23T21:13:39.342Z",
+  "appId": "chain-poem-weaver",
+  "origin": null,
+  "domain": null,
+  "missingInputs": [
+    "MINIAPP_ORIGIN",
+    "FARCASTER_ACCOUNT_ASSOCIATION_HEADER",
+    "FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD",
+    "FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE",
+    "VERCEL_TOKEN"
+  ],
+  "blockers": [
+    "miniapp_origin_missing",
+    "account_association_header_missing",
+    "account_association_payload_missing",
+    "account_association_signature_missing",
+    "server_capable_deploy_provider_not_ready",
+    "dist_not_built_in_production_mode",
+    "production_origin_missing",
+    "dist_manifest_uses_placeholder_domain",
+    "deploy_target:miniapp_origin_missing",
+    "deploy_target:account_association_header_missing",
+    "deploy_target:account_association_payload_missing",
+    "deploy_target:account_association_signature_missing",
+    "deploy_target:server_capable_deploy_provider_not_ready"
+  ],
+  "warnings": [
+    "CHAIN_POEM_PROVENANCE_SECRET missing: provenance remains unsigned preview only",
+    "CHAIN_POEM_LINE_RECEIPT_CONTRACT missing: Base line NFT mint remains disabled",
+    "CHAIN_POEM_LINE_RECEIPT_SIGNER missing: Base line NFT mint remains disabled",
+    "CHAIN_POEM_LINE_RECEIPT_BASE_URI missing: Base line NFT metadata remains disabled"
+  ],
+  "operatorActionChecklist": [
+    {
+      "id": "choose_https_origin",
+      "owner": "operator",
+      "required": true,
+      "input": "MINIAPP_ORIGIN",
+      "valueShape": "https://your-real-domain.example",
+      "why": "Farcaster account association, manifest asset URLs, deployment verification, and client receipts all bind to one exact HTTPS origin."
+    },
+    {
+      "id": "sign_farcaster_account_association",
+      "owner": "operator",
+      "required": true,
+      "input": "FARCASTER_ACCOUNT_ASSOCIATION_HEADER/PAYLOAD/SIGNATURE",
+      "valueShape": "three strings from the Farcaster Mini App manifest tool for the exact domain",
+      "why": "Farcaster/Base clients need a signed accountAssociation before the mini app can be treated as production-ready."
+    },
+    {
+      "id": "provide_server_capable_deploy_token",
+      "owner": "operator",
+      "required": true,
+      "input": "VERCEL_TOKEN",
+      "valueShape": "Vercel token with permission to deploy this project",
+      "why": "The current app uses Node-style api/*.mjs routes, so Vercel is the preferred ready path."
+    },
+    {
+      "id": "set_provenance_secret",
+      "owner": "operator",
+      "required": false,
+      "input": "CHAIN_POEM_PROVENANCE_SECRET",
+      "valueShape": "long random server secret",
+      "why": "Without it, provenance hashes work as unsigned preview receipts; with it, the server can sign poem provenance."
+    },
+    {
+      "id": "deploy_base_line_receipt_contract",
+      "owner": "operator_and_codex",
+      "required": false,
+      "input": "CHAIN_POEM_LINE_RECEIPT_CONTRACT/SIGNER/BASE_URI",
+      "valueShape": "Base ERC-1155 contract address, authorized signer, and metadata base URI",
+      "why": "These remain optional until the poem experience is live. Without them, every line receipt mint plan stays dormant with mintAllowed=false."
+    },
+    {
+      "id": "capture_live_client_receipt",
+      "owner": "operator_and_codex",
+      "required": true,
+      "input": "data/client-verification.json",
+      "valueShape": "filled from data/client-verification.template.json after live Farcaster/Base client testing",
+      "why": "This proves real launch, composeCast, Quick Auth/provenance, standard-web fallback, share fallback, and paid mint disabled."
+    }
+  ],
+  "signingPacket": null,
+  "commandPath": [
+    "npm run generate:assets",
+    "$env:MINIAPP_ORIGIN=\"https://YOUR_REAL_DOMAIN\"",
+    "npm run signing:packet",
+    "Set FARCASTER_ACCOUNT_ASSOCIATION_HEADER/PAYLOAD/SIGNATURE from the Farcaster manifest tool",
+    "Set VERCEL_TOKEN",
+    "npm run deploy:target-check",
+    "npm run deploy:production:dry-run",
+    "npm run deploy:production:live",
+    "Test inside Farcaster/Base client",
+    "npm run client:template",
+    "Fill data/client-verification.json with live client evidence",
+    "npm run test:client-verification"
+  ],
+  "next": "Provide the missing production inputs, then rerun npm run operator:release-brief and npm run deploy:production:dry-run."
+}
