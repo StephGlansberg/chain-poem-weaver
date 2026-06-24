@@ -192,6 +192,59 @@ function shortWalletAddress(address) {
   return `${value.slice(0, 6)}...${value.slice(-4)}`;
 }
 
+function normalizeWalletAddress(address) {
+  const value = String(address || "").toLowerCase();
+  return /^0x[0-9a-f]{40}$/.test(value) ? value : "";
+}
+
+async function verifyFarcasterSession({ fromWalletButton = false } = {}) {
+  if (!state.sdk?.quickAuth || !state.viewer) {
+    const message = "Farcaster Quick Auth is not available in this context.";
+    if (fromWalletButton) setWalletStatus(message);
+    else setContext(message);
+    return false;
+  }
+  try {
+    const { token } = await state.sdk.quickAuth.getToken();
+    const response = await fetch("/api/me", {
+      headers: { Authorization: `Bearer ${token}` },
+      cache: "no-store",
+    });
+    const result = await response.json();
+    if (!response.ok || !result.verified) {
+      const message = "Farcaster session could not be verified by the server.";
+      if (fromWalletButton) setWalletStatus(message);
+      else setContext(message);
+      return false;
+    }
+    const primaryAddress = normalizeWalletAddress(result.primaryAddress);
+    state.viewer = {
+      ...state.viewer,
+      fid: cleanClientText(result.fid, 20),
+      verified: true,
+      signal: "verified-farcaster",
+    };
+    if (primaryAddress) {
+      state.wallet = {
+        address: primaryAddress,
+        signature: "",
+        message: "farcaster-primary-address",
+      };
+      setWalletStatus("");
+    } else if (fromWalletButton) {
+      setWalletStatus("Farcaster verified.");
+    }
+    render();
+    setContext(`Verified as ${state.viewer.author}. Seal provenance to plan a receipt for every line.`);
+    return true;
+  } catch {
+    const message = fromWalletButton ? "Farcaster verification failed." : "Farcaster session verification failed.";
+    if (fromWalletButton) setWalletStatus(message);
+    else setContext(message);
+    return false;
+  }
+}
+
 async function linkWalletFromAnyProvider() {
   const provider = await getWalletProvider();
   if (!provider?.request) {
@@ -275,7 +328,8 @@ function providerName(provider) {
 
 function walletButtonLabel() {
   if (state.wallet?.address) return shortWalletAddress(state.wallet.address);
-  return liveQueueAvailable() ? "link wallet (optional)" : "connect wallet";
+  if (liveQueueAvailable()) return state.viewer?.verified === true ? "FID verified" : "verify FID";
+  return "connect wallet";
 }
 
 const RANDOM_WEAVE_TARGET = 5;
@@ -1004,37 +1058,16 @@ els.provenanceButton.addEventListener("click", async () => {
 
 if (els.walletButton) {
   els.walletButton.addEventListener("click", () => {
+    if (liveQueueAvailable()) {
+      verifyFarcasterSession({ fromWalletButton: true });
+      return;
+    }
     linkWalletFromAnyProvider();
   });
 }
 
 els.verifyButton.addEventListener("click", async () => {
-  if (!state.sdk?.quickAuth || !state.viewer) {
-    setContext("Farcaster Quick Auth is not available in this context.");
-    return;
-  }
-  try {
-    const { token } = await state.sdk.quickAuth.getToken();
-    const response = await fetch("/api/me", {
-      headers: { Authorization: `Bearer ${token}` },
-      cache: "no-store",
-    });
-    const result = await response.json();
-    if (!response.ok || !result.verified) {
-      setContext("Farcaster session could not be verified by the server.");
-      return;
-    }
-    state.viewer = {
-      ...state.viewer,
-      fid: cleanClientText(result.fid, 20),
-      verified: true,
-      signal: "verified-farcaster",
-    };
-    render();
-    setContext(`Verified as ${state.viewer.author}. Seal provenance to plan a receipt for every line.`);
-  } catch {
-    setContext("Farcaster session verification failed.");
-  }
+  await verifyFarcasterSession();
 });
 
 loadInitialPoem();

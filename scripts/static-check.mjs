@@ -105,6 +105,7 @@ if (!index.includes('id="provenanceButton"')) failures.push("provenance_button_m
 
 const authApi = existsSync(join(root, "api/me.mjs")) ? readFileSync(join(root, "api/me.mjs"), "utf8") : "";
 if (!authApi.includes("@farcaster/quick-auth")) failures.push("quick_auth_dependency_not_wired");
+if (!authApi.includes("primary-address?fid=")) failures.push("farcaster_primary_address_lookup_missing");
 if (!authApi.includes("verifyJwt")) failures.push("quick_auth_verify_not_wired");
 if (!authApi.includes("missing_bearer_token")) failures.push("quick_auth_missing_token_gate_missing");
 if (!authApi.includes("no-store")) failures.push("quick_auth_no_store_missing");

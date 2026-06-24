@@ -102,7 +102,8 @@ check("wallet_legacy_multi_provider_fallback_present", main.includes("window.eth
 check("wallet_button_top_right_markup", index.indexOf('id="walletButton"') < index.indexOf('<section class="ritual"'));
 check("wallet_button_top_right_css", css.includes(".wallet-action") && css.includes("position: fixed") && css.includes("right: max"));
 check("wallet_success_status_stays_silent", !main.includes("small signature saved for proof only.") && main.includes('setWalletStatus("");'));
-check("wallet_button_label_switches_by_context", main.includes("function walletButtonLabel") && main.includes("shortWalletAddress(state.wallet.address)") && main.includes('"connect wallet"'));
+check("wallet_button_label_switches_by_context", main.includes("function walletButtonLabel") && main.includes("shortWalletAddress(state.wallet.address)") && main.includes('"connect wallet"') && main.includes('"verify FID"'));
+check("farcaster_wallet_button_uses_quick_auth_not_wallet_tx", main.includes("verifyFarcasterSession({ fromWalletButton: true })") && main.includes("farcaster-primary-address"));
 check("wallet_connected_badge_class_present", main.includes('classList.toggle("connected"') && css.includes(".wallet-action.connected::before"));
 
 // Server pins remain the source of truth. The UI may describe receipts, but it

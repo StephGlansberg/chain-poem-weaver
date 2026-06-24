@@ -30,10 +30,12 @@ export default async function handler(request, response) {
       token: authorization.slice("Bearer ".length).trim(),
       domain: expectedDomain,
     });
+    const primaryAddress = await resolvePrimaryEthereumAddress(payload.sub);
     return sendJson(response, 200, {
       ok: true,
       verified: true,
       fid: payload.sub,
+      primaryAddress,
       auth: {
         issuer: payload.iss,
         audience: payload.aud,
@@ -54,6 +56,26 @@ export default async function handler(request, response) {
       error: "auth_verification_failed",
       verified: false,
     });
+  }
+}
+
+async function resolvePrimaryEthereumAddress(fid) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 2500);
+  try {
+    const url = `https://api.farcaster.xyz/fc/primary-address?fid=${encodeURIComponent(String(fid))}&protocol=ethereum`;
+    const response = await fetch(url, {
+      signal: controller.signal,
+      headers: { accept: "application/json" },
+    });
+    if (!response.ok) return null;
+    const body = await response.json();
+    const address = String(body?.result?.address?.address || "").toLowerCase();
+    return /^0x[0-9a-f]{40}$/.test(address) ? address : null;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
