@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "chain-poem-line-receipt-contract-readiness",
-  "generatedAtUtc": "2026-06-24T18:02:10.508Z",
+  "generatedAtUtc": "2026-06-24T18:06:20.603Z",
   "ok": true,
   "deployReady": false,
   "contractPath": "contracts/ChainPoemLineReceipts.sol",

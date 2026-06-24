@@ -210,7 +210,7 @@ function validateEmbed(embed) {
 if (embed.button?.title !== "Leave a trace") failures.push("embed_button_title_mismatch");
   if (embed.button?.action?.type !== "launch_miniapp") failures.push("embed_action_type_not_launch_miniapp");
   if (embed.button?.action?.name !== "Poem Weaver") failures.push("embed_action_name_mismatch");
-  if (embed.button?.action?.url !== `${origin}/poem`) failures.push("embed_action_url_mismatch");
+  if (embed.button?.action?.url) failures.push("embed_action_url_should_default_to_shared_url");
   if (embed.button?.action?.splashImageUrl && !embed.button.action.splashImageUrl.startsWith(origin)) {
     failures.push("embed_splash_origin_mismatch");
   }
@@ -222,7 +222,9 @@ function validateManifestEmbedAgreement(liveManifest, embed) {
   if (embed.imageUrl !== miniapp.imageUrl) failures.push("embed_image_url_manifest_image_mismatch");
   if (embed.button?.title !== miniapp.buttonTitle) failures.push("embed_button_title_manifest_button_mismatch");
   if (embed.button?.action?.name !== miniapp.name) failures.push("embed_action_name_manifest_name_mismatch");
-  if (embed.button?.action?.url !== miniapp.homeUrl) failures.push("embed_action_url_manifest_home_mismatch");
+  if (embed.button?.action?.url && embed.button.action.url !== miniapp.homeUrl) {
+    failures.push("embed_action_url_manifest_home_mismatch");
+  }
   if (embed.button?.action?.splashImageUrl !== miniapp.splashImageUrl) {
     failures.push("embed_splash_url_manifest_splash_mismatch");
   }
@@ -290,7 +292,6 @@ function installSelfTestFetch() {
       action: {
         type: "launch_miniapp",
         name: manifest.miniapp.name,
-        url: manifest.miniapp.homeUrl,
         splashImageUrl: manifest.miniapp.splashImageUrl,
         splashBackgroundColor: manifest.miniapp.splashBackgroundColor,
       },

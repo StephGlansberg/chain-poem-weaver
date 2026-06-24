@@ -192,7 +192,7 @@ if (!deployProduction.includes("hosting-config-check.mjs")) failures.push("deplo
 const verifyDeployment = existsSync(join(root, "scripts/verify-deployment.mjs")) ? readFileSync(join(root, "scripts/verify-deployment.mjs"), "utf8") : "";
 if (!verifyDeployment.includes("chain-poem-weaver-live-verify-run")) failures.push("verify_deployment_kind_missing");
 if (!verifyDeployment.includes("--self-test")) failures.push("verify_deployment_self_test_missing");
-if (!verifyDeployment.includes("embed_action_url_manifest_home_mismatch")) failures.push("verify_deployment_embed_manifest_check_missing");
+if (!verifyDeployment.includes("embed_action_url_should_default_to_shared_url")) failures.push("verify_deployment_embed_default_url_check_missing");
 if (!verifyDeployment.includes("auth_api_cache_control_missing_no_store")) failures.push("verify_deployment_cache_control_check_missing");
 if (!verifyDeployment.includes("admin_moderation_fail_closed_probe_failed")) failures.push("verify_deployment_admin_moderation_check_missing");
 if (!verifyDeployment.includes("live-verify-run.json")) failures.push("verify_deployment_receipt_missing");

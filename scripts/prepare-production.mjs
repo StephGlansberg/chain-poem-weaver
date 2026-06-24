@@ -66,11 +66,10 @@ const embed = {
   button: {
     title: "Leave a trace",
     action: {
-      type: "launch_frame",
+      type: "launch_miniapp",
       name: "Poem Weaver",
-      url: homeUrl,
       splashImageUrl,
-      splashBackgroundColor: "#12201d",
+      splashBackgroundColor: "#0b0a08",
     },
   },
 };
