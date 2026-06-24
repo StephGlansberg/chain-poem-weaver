@@ -87,6 +87,7 @@ if (!main.includes("Minting remains disabled")) failures.push("provenance_mint_d
 if (!main.includes("line NFT receipts planned")) failures.push("line_receipt_ui_message_missing");
 if (!main.includes("inferLaneFromProfile")) failures.push("profile_lane_inference_not_wired");
 if (!main.includes("view=entry")) failures.push("entry_view_navigation_not_wired");
+if (!main.includes("view=what")) failures.push("what_view_navigation_not_wired");
 if (!main.includes("thread-view")) failures.push("thread_view_class_not_wired");
 if (!main.includes("localStorage")) failures.push("local_storage_not_wired");
 
@@ -95,6 +96,8 @@ if (!index.includes('name="fc:miniapp"')) failures.push("fc_miniapp_meta_missing
 if (!index.includes('rel="manifest"')) failures.push("web_manifest_link_missing");
 if (!index.includes('id="introPanel"')) failures.push("intro_panel_missing");
 if (!index.includes('id="startButton"')) failures.push("intro_start_button_missing");
+if (!index.includes('id="whatPanel"')) failures.push("what_panel_missing");
+if (!index.includes('id="whatContinueButton"')) failures.push("what_continue_button_missing");
 if (!index.includes('id="phraseInput"')) failures.push("ritual_phrase_input_missing");
 if (!index.includes('id="contextText"')) failures.push("context_status_missing");
 if (!index.includes('id="verifyButton"')) failures.push("verify_button_missing");

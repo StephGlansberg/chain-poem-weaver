@@ -40,6 +40,8 @@ const els = {
   appTitle: document.querySelector("#appTitle"),
   introPanel: document.querySelector("#introPanel"),
   startButton: document.querySelector("#startButton"),
+  whatPanel: document.querySelector("#whatPanel"),
+  whatContinueButton: document.querySelector("#whatContinueButton"),
   inputHint: document.querySelector(".input-hint"),
   phraseInput: document.querySelector("#phraseInput"),
   charCount: document.querySelector("#charCount"),
@@ -542,7 +544,7 @@ function loadInitialPoem() {
   }
 
   state.poem = null;
-  state.view = params.get("view") === "entry" ? "entry" : "intro";
+  state.view = params.get("view") === "entry" ? "entry" : params.get("view") === "what" ? "what" : "intro";
 }
 
 function persistPoem({ push = false } = {}) {
@@ -644,6 +646,7 @@ function render() {
   const hasPoem = Boolean(poem);
   const onThread = hasPoem && state.view === "thread";
   const onIntro = !hasPoem && state.view === "intro";
+  const onWhat = !hasPoem && state.view === "what";
   const onEntry = !hasPoem && state.view === "entry";
   const held = isHeld(poem);
   const revealed = isRevealed(poem);
@@ -654,6 +657,7 @@ function render() {
   document.body.classList.toggle("is-held", held);
   document.body.classList.toggle("thread-view", onThread);
   document.body.classList.toggle("intro-view", onIntro);
+  document.body.classList.toggle("what-view", onWhat);
   document.body.classList.toggle("entry-view", onEntry);
 
   if (els.appTitle) {
@@ -661,10 +665,13 @@ function render() {
       ? held
         ? "the unseen thread"
         : "the weave opened"
+      : onWhat
+        ? "what is this?"
       : "leave a trace";
   }
 
   if (els.introPanel) els.introPanel.hidden = !onIntro;
+  if (els.whatPanel) els.whatPanel.hidden = !onWhat;
   if (els.inputHint) els.inputHint.hidden = !onEntry;
   els.weaveForm.hidden = !onEntry || state.spinning;
   els.spinPanel.hidden = !state.spinning;
@@ -710,11 +717,11 @@ function render() {
   // Optional wallet link appears early. Browser links stay preview-only until
   // Farcaster Quick Auth verifies a live line claim.
   if (els.walletButton) {
-    els.walletButton.hidden = !(onIntro || onEntry) || state.spinning;
+    els.walletButton.hidden = !(onIntro || onWhat || onEntry) || state.spinning;
     els.walletButton.textContent = walletButtonLabel();
     els.walletButton.classList.toggle("connected", Boolean(state.wallet?.address));
   }
-  if (els.walletStatus && !(onIntro || onEntry)) els.walletStatus.hidden = true;
+  if (els.walletStatus && !(onIntro || onWhat || onEntry)) els.walletStatus.hidden = true;
 
   const liveHeld = held && Boolean(state.live);
   const previewWeave = isPreviewWeave(poem);
@@ -832,6 +839,17 @@ function renderProvenanceResult(provenance) {
 }
 
 els.startButton.addEventListener("click", () => {
+  state.view = "what";
+  state.poem = null;
+  state.provenance = null;
+  state.live = null;
+  state.animateReveal = false;
+  window.history.pushState({ view: "what" }, "", "#view=what");
+  render();
+  setStatus("waiting");
+});
+
+els.whatContinueButton.addEventListener("click", () => {
   state.view = "entry";
   state.poem = null;
   state.provenance = null;
@@ -1032,6 +1050,13 @@ window.addEventListener("popstate", () => {
   renderProvenanceResult(null);
   if (params.get("view") === "entry" && !payload) {
     state.view = "entry";
+    state.poem = null;
+    render();
+    setStatus("waiting");
+    return;
+  }
+  if (params.get("view") === "what" && !payload) {
+    state.view = "what";
     state.poem = null;
     render();
     setStatus("waiting");

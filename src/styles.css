@@ -192,12 +192,14 @@ h1 {
   color: var(--ink);
 }
 
-.intro-panel {
+.intro-panel,
+.what-panel {
   display: grid;
   gap: 13px;
 }
 
-.intro-panel p {
+.intro-panel p,
+.what-panel p {
   margin: 0;
   color: var(--muted);
   font-size: 15.5px;
@@ -205,6 +207,7 @@ h1 {
 }
 
 .intro-panel .fine,
+.what-panel .fine,
 .fine {
   color: var(--faint);
   font-size: 13px;

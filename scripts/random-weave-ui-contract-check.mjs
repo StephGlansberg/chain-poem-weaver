@@ -92,7 +92,8 @@ check("live_target_reduced_to_five", main.includes("const RANDOM_WEAVE_TARGET = 
 // Moderation and financial safety UX should keep rejected traces editable.
 check("content_rejection_stays_entry", /result\.status === 422[\s\S]*state\.view = "entry"[\s\S]*phraseInput\.value = phrase/.test(main));
 check("unsafe_financial_copy_is_humanized", main.includes("unsafe_financial_or_wallet_language") && main.includes("That line reads like a pitch"));
-check("browser_wallet_button_visible_on_intro_or_entry", main.includes("walletButton.hidden = !(onIntro || onEntry) || state.spinning"));
+check("browser_wallet_button_visible_before_trace", main.includes("walletButton.hidden = !(onIntro || onWhat || onEntry) || state.spinning"));
+check("what_page_before_trace_present", index.includes('id="whatPanel"') && index.includes('id="whatContinueButton"') && main.includes('window.history.pushState({ view: "what" }'));
 check("browser_wallet_provider_fallback_present", main.includes("function linkWalletFromAnyProvider") && main.includes("window.ethereum?.request"));
 check("wallet_eip6963_discovery_present", main.includes("eip6963:requestProvider") && main.includes("eip6963:announceProvider"));
 check("wallet_prefers_rabby_or_metamask", main.includes("provider.isRabby") && main.includes("provider.isMetaMask"));
