@@ -127,7 +127,7 @@ function walletBindingPayload() {
 }
 
 // Connect the host (Farcaster) wallet and capture an EIP-191 personal_sign proof
-// that this fid controls the address. Records intent only — no transaction, no
+// that this fid controls the address. Records intent only: no transaction, no
 // mint. Uses the Mini App SDK's EIP-1193 provider; no extra dependency, no
 // WalletConnect needed inside Farcaster.
 async function linkWallet() {
@@ -302,7 +302,7 @@ function sealLocalPreview(phrase) {
   state.view = "thread";
   persistPoem({ push: true });
   els.phraseInput.value = "";
-  setStatus("sealed. open the weave whenever you're ready — or leave it in the dark.");
+  setStatus("sealed. open the weave whenever you're ready, or leave it in the dark.");
 }
 
 // Step 1 (inside Farcaster): seal the trace into the real server queue. If five
@@ -320,8 +320,8 @@ async function sealIntoLiveQueue(phrase) {
     });
     result = { status: response.status, ok: response.ok, body: await response.json() };
   } catch {
-    // Network / no real Quick Auth client — never dead-end the ritual.
-    setStatus("the live queue is unreachable right now — sealing a local trace instead.");
+    // Network / no real Quick Auth client: never dead-end the ritual.
+    setStatus("the live queue is unreachable right now; sealing a local trace instead.");
     sealLocalPreview(phrase);
     return;
   }
@@ -329,13 +329,13 @@ async function sealIntoLiveQueue(phrase) {
   if (!result.ok || !result.body?.ok) {
     const code = result.body?.error || "";
     if (result.status === 422) {
-      // Content was rejected (moderation / empty) — let the weaver edit it.
+      // Content was rejected (moderation / empty): let the weaver edit it.
       setStatus(humanQueueError(code));
       state.view = "entry";
       els.phraseInput.value = phrase;
       return;
     }
-    setStatus("the live queue is unreachable right now — sealing a local trace instead.");
+    setStatus("the live queue is unreachable right now; sealing a local trace instead.");
     sealLocalPreview(phrase);
     return;
   }
@@ -373,7 +373,7 @@ async function refreshLiveQueue({ announce = false } = {}) {
     body = await response.json();
     if (!response.ok || !body?.ok) throw new Error("queue_unavailable");
   } catch {
-    if (announce) setStatus("could not reach the live queue — try again in a moment.");
+    if (announce) setStatus("could not reach the live queue; try again in a moment.");
     return;
   }
 
@@ -392,7 +392,7 @@ async function refreshLiveQueue({ announce = false } = {}) {
     targetLines: Number(body.queue?.targetLines) || RANDOM_WEAVE_TARGET,
   };
   if (announce) {
-    setStatus(`still gathering — ${queueRemainingText(state.live.queue.eligibleWaiting)} come back soon.`);
+    setStatus(`still gathering: ${queueRemainingText(state.live.queue.eligibleWaiting)} come back soon.`);
   }
   render();
 }
@@ -522,7 +522,7 @@ async function loadSdk() {
       setContext(`Signed in as ${state.viewer.author}. Verify your session to seal each line.`);
     }
   } catch {
-    // No Farcaster context detected — run as a standard web app, on-chain
+    // No Farcaster context detected: run as a standard web app, on-chain
     // features stay dormant and their controls are hidden (never dead).
     state.sdk = null;
   }
@@ -680,7 +680,7 @@ function render() {
   els.actions.hidden = !onThread || state.spinning;
   els.statusText.hidden = onIntro;
 
-  // Provenance / NFT — only appears once there is a weave to keep, and every
+  // Provenance / NFT only appears once there is a weave to keep, and every
   // control inside it is shown only when it can actually be used (no dead controls).
   els.provenancePanel.hidden = !onThread || !revealed || simulated || state.spinning;
   els.verifyButton.hidden = !revealed || !farcaster || state.viewer?.verified === true;
@@ -817,7 +817,7 @@ function renderProvenanceResult(provenance) {
     els.provenanceResult.hidden = true;
     return;
   }
-  els.provenanceHash.textContent = provenance.poemHash || "—";
+  els.provenanceHash.textContent = provenance.poemHash || "-";
   els.receiptList.innerHTML = "";
   const receipts = provenance.lineReceiptMintPlan?.receipts || [];
   receipts.forEach((receipt, index) => {
@@ -1129,9 +1129,9 @@ function humanError(error) {
 
 function humanQueueError(code) {
   if (code === "line_required") return "Type one small thing first.";
-  if (code === "links_not_allowed") return "Links can't be woven in — try words only.";
+  if (code === "links_not_allowed") return "Links can't be woven in; try words only.";
   if (code === "unsafe_financial_or_wallet_language") return "That line reads like a pitch. Keep it human.";
-  if (code === "verified_fid_required") return "Your Farcaster session couldn't be verified — reopen and try again.";
+  if (code === "verified_fid_required") return "Your Farcaster session couldn't be verified; reopen and try again.";
   return "That line couldn't enter the live queue. Try a different one.";
 }
 

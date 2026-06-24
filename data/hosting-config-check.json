@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "chain-poem-weaver-hosting-config-check",
-  "generatedAtUtc": "2026-06-24T18:42:25.790Z",
+  "generatedAtUtc": "2026-06-24T18:46:13.616Z",
   "ok": true,
   "provider": "vercel",
   "checks": [
