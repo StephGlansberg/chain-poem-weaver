@@ -39,6 +39,7 @@ if (miniapp.canonicalDomain && String(miniapp.canonicalDomain).includes("://")) 
 
 if (embed?.version !== "1") failures.push("embed_version_not_1");
 if (embed?.button?.title !== miniapp.buttonTitle) failures.push("embed_button_title_mismatch");
+if (embed?.button?.action?.type !== "launch_miniapp") failures.push("embed_action_type_not_launch_miniapp");
 if (embed?.button?.action?.name !== miniapp.name) failures.push("embed_action_name_mismatch");
 if (embed?.button?.action?.url !== miniapp.homeUrl) failures.push("embed_action_url_manifest_home_mismatch");
 if (embed?.imageUrl !== miniapp.imageUrl) failures.push("embed_image_url_manifest_image_mismatch");

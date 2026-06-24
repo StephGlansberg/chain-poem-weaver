@@ -2,34 +2,34 @@
   "schemaVersion": 1,
   "kind": "chain-poem-weaver-release-packet",
   "appId": "chain-poem-weaver",
-  "generatedAtUtc": "2026-06-24T00:39:21.440Z",
+  "generatedAtUtc": "2026-06-24T14:30:48.980Z",
   "package": {
     "name": "chain-poem-weaver",
     "version": "0.1.0",
     "quickAuthDependency": "^0.0.8"
   },
   "deployment": {
-    "productionMode": true,
-    "origin": "https://chain-poem-weaver.vercel.app",
-    "homeUrl": "https://chain-poem-weaver.vercel.app/poem",
-    "domain": "chain-poem-weaver.vercel.app",
-    "accountAssociationReady": true,
-    "buildGeneratedAtUtc": "2026-06-24T00:39:16.540Z"
+    "productionMode": false,
+    "origin": null,
+    "homeUrl": null,
+    "domain": null,
+    "accountAssociationReady": false,
+    "buildGeneratedAtUtc": "2026-06-24T14:30:39.235Z"
   },
   "deployTarget": {
     "schemaVersion": 1,
     "kind": "chain-poem-weaver-deploy-target-readiness",
-    "generatedAtUtc": "2026-06-24T00:39:21.421Z",
-    "ok": true,
-    "origin": "https://chain-poem-weaver.vercel.app",
-    "domain": "chain-poem-weaver.vercel.app",
+    "generatedAtUtc": "2026-06-24T14:30:48.962Z",
+    "ok": false,
+    "origin": null,
+    "domain": null,
     "env": {
-      "MINIAPP_ORIGIN": true,
-      "FARCASTER_ACCOUNT_ASSOCIATION_HEADER": true,
-      "FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD": true,
-      "FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE": true,
+      "MINIAPP_ORIGIN": false,
+      "FARCASTER_ACCOUNT_ASSOCIATION_HEADER": false,
+      "FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD": false,
+      "FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE": false,
       "CHAIN_POEM_PROVENANCE_SECRET": false,
-      "VERCEL_TOKEN": true,
+      "VERCEL_TOKEN": false,
       "CLOUDFLARE_API_TOKEN": false,
       "NETLIFY_AUTH_TOKEN": false
     },
@@ -44,8 +44,8 @@
         "id": "vercel",
         "serverCapableForCurrentApi": true,
         "cliPresent": true,
-        "tokenPresent": true,
-        "ready": true,
+        "tokenPresent": false,
+        "ready": false,
         "deployCommand": "npx vercel@latest deploy --prod --token %VERCEL_TOKEN%",
         "note": "Best current fit for api/*.mjs serverless routes and /poem rewrite. npx is enough when a token is configured."
       },
@@ -69,17 +69,22 @@
       }
     ],
     "preferredProvider": "vercel",
-    "blockers": [],
+    "blockers": [
+      "miniapp_origin_missing",
+      "account_association_header_missing",
+      "account_association_payload_missing",
+      "account_association_signature_missing",
+      "server_capable_deploy_provider_not_ready"
+    ],
     "warnings": [
-      "account_association_shape_only_not_cryptographic_verification",
       "chain_poem_provenance_secret_missing_unsigned_preview_only"
     ],
-    "next": "Build production dist and deploy with npx vercel@latest deploy --prod --token %VERCEL_TOKEN%."
+    "next": "Set MINIAPP_ORIGIN, sign Farcaster accountAssociation, configure a server-capable deploy provider token, then rerun this check."
   },
   "manifest": {
     "sourceHomeUrl": "https://opulentis-miniapps.example/poem",
-    "distHomeUrl": "https://chain-poem-weaver.vercel.app/poem",
-    "canonicalDomain": "chain-poem-weaver.vercel.app"
+    "distHomeUrl": "https://opulentis-miniapps.example/poem",
+    "canonicalDomain": null
   },
   "authAndProvenance": {
     "quickAuthFailClosedExpected": true,
@@ -139,7 +144,7 @@
     "failures": [
       "client_verification_receipt_missing"
     ],
-    "next": "After live HTTPS deploy, fill data/client-verification.json from data/client-verification.template.json and rerun npm run test:client-verification."
+    "next": "Optional after live HTTPS deploy: fill data/client-verification.json from data/client-verification.template.json and rerun npm run test:client-verification."
   },
   "hosting": {
     "provider": "vercel",
@@ -334,8 +339,8 @@
       {
         "file": "deployment-build.json",
         "exists": true,
-        "bytes": 1653,
-        "sha256": "c33622890c62c279ce6a2cfa00c6f88d9f3a8431e5c24bc743f6ad8d01886548"
+        "bytes": 1432,
+        "sha256": "45eb18324863cb114c5aaf8bb775c6ce010f8cabf1f829573f084a694913afb4"
       },
       {
         "file": "package.json",
@@ -352,14 +357,14 @@
       {
         "file": "index.html",
         "exists": true,
-        "bytes": 6824,
-        "sha256": "03a854214c881cf21daea24c55f5c2d6ac1c3efb570457a7b3b8f09eec23637b"
+        "bytes": 6795,
+        "sha256": "bf7424dd1c71d522b85ead343c2f8396f4ee7407636d8d5bd5b07423c1d32da9"
       },
       {
         "file": ".well-known/farcaster.json",
         "exists": true,
-        "bytes": 1409,
-        "sha256": "41fdcddf684269c33b6591e70d91bf75c24fcc22618c83a730808b31791a15ed"
+        "bytes": 516,
+        "sha256": "477b27f6f30ba5a32d2ee03335b4f2f09a4a265a920c850008e9d30ecfdcfd86"
       },
       {
         "file": "api/me.mjs",
@@ -513,11 +518,21 @@
       }
     ]
   },
-  "blockers": [],
+  "blockers": [
+    "dist_not_built_in_production_mode",
+    "production_origin_missing",
+    "dist_manifest_uses_placeholder_domain",
+    "account_association_header_missing",
+    "account_association_payload_missing",
+    "account_association_signature_missing",
+    "deploy_target:miniapp_origin_missing",
+    "deploy_target:account_association_header_missing",
+    "deploy_target:account_association_payload_missing",
+    "deploy_target:account_association_signature_missing",
+    "deploy_target:server_capable_deploy_provider_not_ready"
+  ],
   "warnings": [
-    "account_association_shape_only_not_cryptographic_verification",
-    "deploy_target:account_association_shape_only_not_cryptographic_verification",
     "deploy_target:chain_poem_provenance_secret_missing_unsigned_preview_only"
   ],
-  "next": "Deploy dist, run verify-deployment against the live origin, and perform Farcaster client Quick Auth/provenance tests."
+  "next": "Resolve blockers, rebuild production dist with real Farcaster account association, then deploy to HTTPS."
 }

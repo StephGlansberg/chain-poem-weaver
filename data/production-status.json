@@ -2,7 +2,7 @@
     "schemaVersion":  1,
     "appId":  "chain-poem-weaver",
     "appTitle":  "Chain Poem Weaver",
-    "updatedAtUtc":  "2026-06-23T21:13:42.3856173Z",
+    "updatedAtUtc":  "2026-06-24T14:30:49.1583263Z",
     "stage":  "integration",
     "confidence":  "local-pass",
     "summary":  "Chain Poem Weaver local Mini App scaffold is passing static checks.",

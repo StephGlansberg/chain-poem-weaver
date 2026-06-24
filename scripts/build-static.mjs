@@ -128,7 +128,7 @@ function writeProductionConfig(targetRoot) {
     button: {
       title: "Leave a trace",
       action: {
-        type: "launch_frame",
+        type: "launch_miniapp",
         name: "Poem Weaver",
         url: homeUrl,
         splashImageUrl,

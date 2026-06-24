@@ -208,7 +208,7 @@ function validateEmbed(embed) {
   if (embed.version !== "1") failures.push("embed_version_not_1");
   if (embed.imageUrl && !embed.imageUrl.startsWith(origin)) failures.push("embed_image_origin_mismatch");
 if (embed.button?.title !== "Leave a trace") failures.push("embed_button_title_mismatch");
-  if (embed.button?.action?.type !== "launch_frame") failures.push("embed_action_type_not_launch_frame");
+  if (embed.button?.action?.type !== "launch_miniapp") failures.push("embed_action_type_not_launch_miniapp");
   if (embed.button?.action?.name !== "Poem Weaver") failures.push("embed_action_name_mismatch");
   if (embed.button?.action?.url !== `${origin}/poem`) failures.push("embed_action_url_mismatch");
   if (embed.button?.action?.splashImageUrl && !embed.button.action.splashImageUrl.startsWith(origin)) {
@@ -288,7 +288,7 @@ function installSelfTestFetch() {
     button: {
       title: manifest.miniapp.buttonTitle,
       action: {
-        type: "launch_frame",
+        type: "launch_miniapp",
         name: manifest.miniapp.name,
         url: manifest.miniapp.homeUrl,
         splashImageUrl: manifest.miniapp.splashImageUrl,

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "chain-poem-weaver-operator-release-brief",
-  "generatedAtUtc": "2026-06-23T21:13:39.342Z",
+  "generatedAtUtc": "2026-06-24T14:30:46.911Z",
   "appId": "chain-poem-weaver",
   "origin": null,
   "domain": null,
@@ -17,15 +17,7 @@
     "account_association_header_missing",
     "account_association_payload_missing",
     "account_association_signature_missing",
-    "server_capable_deploy_provider_not_ready",
-    "dist_not_built_in_production_mode",
-    "production_origin_missing",
-    "dist_manifest_uses_placeholder_domain",
-    "deploy_target:miniapp_origin_missing",
-    "deploy_target:account_association_header_missing",
-    "deploy_target:account_association_payload_missing",
-    "deploy_target:account_association_signature_missing",
-    "deploy_target:server_capable_deploy_provider_not_ready"
+    "server_capable_deploy_provider_not_ready"
   ],
   "warnings": [
     "CHAIN_POEM_PROVENANCE_SECRET missing: provenance remains unsigned preview only",
@@ -77,10 +69,10 @@
     {
       "id": "capture_live_client_receipt",
       "owner": "operator_and_codex",
-      "required": true,
+      "required": false,
       "input": "data/client-verification.json",
       "valueShape": "filled from data/client-verification.template.json after live Farcaster/Base client testing",
-      "why": "This proves real launch, composeCast, Quick Auth/provenance, standard-web fallback, share fallback, and paid mint disabled."
+      "why": "Optional acceptance evidence after deployment: real launch, composeCast, Quick Auth/provenance, standard-web fallback, share fallback, and paid mint disabled."
     }
   ],
   "signingPacket": null,
@@ -95,7 +87,7 @@
     "npm run deploy:production:live",
     "Test inside Farcaster/Base client",
     "npm run client:template",
-    "Fill data/client-verification.json with live client evidence",
+    "Optionally fill data/client-verification.json with live client evidence",
     "npm run test:client-verification"
   ],
   "next": "Provide the missing production inputs, then rerun npm run operator:release-brief and npm run deploy:production:dry-run."

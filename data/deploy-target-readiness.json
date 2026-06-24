@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "kind": "chain-poem-weaver-deploy-target-readiness",
-  "generatedAtUtc": "2026-06-24T00:39:21.421Z",
-  "ok": true,
-  "origin": "https://chain-poem-weaver.vercel.app",
-  "domain": "chain-poem-weaver.vercel.app",
+  "generatedAtUtc": "2026-06-24T14:30:48.962Z",
+  "ok": false,
+  "origin": null,
+  "domain": null,
   "env": {
-    "MINIAPP_ORIGIN": true,
-    "FARCASTER_ACCOUNT_ASSOCIATION_HEADER": true,
-    "FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD": true,
-    "FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE": true,
+    "MINIAPP_ORIGIN": false,
+    "FARCASTER_ACCOUNT_ASSOCIATION_HEADER": false,
+    "FARCASTER_ACCOUNT_ASSOCIATION_PAYLOAD": false,
+    "FARCASTER_ACCOUNT_ASSOCIATION_SIGNATURE": false,
     "CHAIN_POEM_PROVENANCE_SECRET": false,
-    "VERCEL_TOKEN": true,
+    "VERCEL_TOKEN": false,
     "CLOUDFLARE_API_TOKEN": false,
     "NETLIFY_AUTH_TOKEN": false
   },
@@ -26,8 +26,8 @@
       "id": "vercel",
       "serverCapableForCurrentApi": true,
       "cliPresent": true,
-      "tokenPresent": true,
-      "ready": true,
+      "tokenPresent": false,
+      "ready": false,
       "deployCommand": "npx vercel@latest deploy --prod --token %VERCEL_TOKEN%",
       "note": "Best current fit for api/*.mjs serverless routes and /poem rewrite. npx is enough when a token is configured."
     },
@@ -51,10 +51,15 @@
     }
   ],
   "preferredProvider": "vercel",
-  "blockers": [],
+  "blockers": [
+    "miniapp_origin_missing",
+    "account_association_header_missing",
+    "account_association_payload_missing",
+    "account_association_signature_missing",
+    "server_capable_deploy_provider_not_ready"
+  ],
   "warnings": [
-    "account_association_shape_only_not_cryptographic_verification",
     "chain_poem_provenance_secret_missing_unsigned_preview_only"
   ],
-  "next": "Build production dist and deploy with npx vercel@latest deploy --prod --token %VERCEL_TOKEN%."
+  "next": "Set MINIAPP_ORIGIN, sign Farcaster accountAssociation, configure a server-capable deploy provider token, then rerun this check."
 }
