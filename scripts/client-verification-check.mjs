@@ -11,7 +11,7 @@ if (writeTemplate) {
   const template = buildTemplate();
   mkdirSync(dirname(templatePath), { recursive: true });
   writeFileSync(templatePath, `${JSON.stringify(template, null, 2)}\n`, "utf8");
-  console.log(JSON.stringify({ ok: true, templatePath, next: "Fill data/client-verification.json after live Farcaster/Base client testing." }, null, 2));
+  console.log(JSON.stringify({ ok: true, templatePath, next: "Optional after deployment: fill data/client-verification.json after live Farcaster/Base client testing." }, null, 2));
   process.exit(0);
 }
 
@@ -67,7 +67,7 @@ const result = {
   failures: unique(failures),
   warnings: unique(warnings),
   next: failures.length
-    ? "After live HTTPS deploy, fill data/client-verification.json from data/client-verification.template.json and rerun npm run test:client-verification."
+    ? "Optional after live HTTPS deploy: fill data/client-verification.json from data/client-verification.template.json and rerun npm run test:client-verification."
     : "Client verification receipt is complete. Keep the evidence with the release packet.",
 };
 

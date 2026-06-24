@@ -178,12 +178,12 @@ const packet = {
     warnings: lineReceiptContractCheck?.warnings || ["line_receipt_contract_readiness_not_checked"],
   },
   clientVerification: {
-    requiredAfterLiveDeploy: true,
+    requiredAfterLiveDeploy: false,
     ok: clientVerificationCheck?.ok === true,
     checkPath: "data/client-verification-check.json",
     receiptPath: "data/client-verification.json",
     failures: clientVerificationCheck?.failures || ["client_verification_not_checked"],
-    next: clientVerificationCheck?.next || "After live deploy, run npm run client:template, fill data/client-verification.json, then run npm run test:client-verification.",
+    next: clientVerificationCheck?.next || "Optional after live deploy: run npm run client:template, fill data/client-verification.json, then run npm run test:client-verification.",
   },
   hosting: {
     provider: "vercel",

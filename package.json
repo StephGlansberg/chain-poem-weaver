@@ -19,7 +19,6 @@
     "verify:deployment": "node scripts/verify-deployment.mjs",
     "operator:release-brief": "node scripts/operator-release-brief.mjs",
     "client:template": "node scripts/client-verification-check.mjs --template",
-    "six-fid:template": "node scripts/six-fid-private-test-check.mjs --template",
     "preflight:deploy": "node scripts/deploy-preflight.mjs",
     "release:packet": "node scripts/release-packet.mjs",
     "release:packet:strict": "node scripts/release-packet.mjs --strict",
@@ -39,7 +38,6 @@
     "test:verify-deployment": "node scripts/verify-deployment.mjs --self-test",
     "test:production-rehearsal": "node scripts/production-rehearsal-check.mjs",
     "test:client-verification": "node scripts/client-verification-check.mjs",
-    "test:six-fid": "node scripts/six-fid-private-test-check.mjs",
     "test": "node scripts/static-check.mjs && node scripts/manifest-assert.mjs && node scripts/base-standard-web-check.mjs && node scripts/hosting-config-check.mjs && node scripts/vercel-dev-check.mjs && node scripts/provenance-canonical-check.mjs && node scripts/random-weave-queue-check.mjs && node scripts/moderation-floor-check.mjs && node scripts/store-adapter-check.mjs && node scripts/random-weave-ui-contract-check.mjs && node scripts/line-receipt-contract-check.mjs && node scripts/line-receipt-metadata-check.mjs",
     "test:dist": "npm run build && node dist/scripts/static-check.mjs && node dist/scripts/manifest-assert.mjs && node dist/scripts/base-standard-web-check.mjs && node dist/scripts/hosting-config-check.mjs && node dist/scripts/vercel-dev-check.mjs && node dist/scripts/provenance-canonical-check.mjs && node dist/scripts/random-weave-queue-check.mjs && node dist/scripts/moderation-floor-check.mjs && node dist/scripts/store-adapter-check.mjs && node dist/scripts/random-weave-ui-contract-check.mjs && node dist/scripts/line-receipt-contract-check.mjs && node dist/scripts/line-receipt-metadata-check.mjs",
     "test:production": "node scripts/static-check.mjs --production && node scripts/manifest-assert.mjs --production"

@@ -29,7 +29,6 @@ const entries = [
   "scripts/vercel-dev-check.mjs",
   "scripts/production-rehearsal-check.mjs",
   "scripts/client-verification-check.mjs",
-  "scripts/six-fid-private-test-check.mjs",
   "scripts/deploy-preflight.mjs",
   "scripts/verify-deployment.mjs",
   "scripts/api-fail-closed-check.mjs",

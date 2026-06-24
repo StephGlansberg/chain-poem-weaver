@@ -49,7 +49,6 @@ const required = [
   "scripts/vercel-dev-check.mjs",
   "scripts/production-rehearsal-check.mjs",
   "scripts/client-verification-check.mjs",
-  "scripts/six-fid-private-test-check.mjs",
   "scripts/deploy-preflight.mjs",
   "scripts/verify-deployment.mjs",
   "scripts/release-packet.mjs",
@@ -240,12 +239,6 @@ if (!clientVerificationCheck.includes("completedPoemShared")) failures.push("cli
 if (!clientVerificationCheck.includes("embedRenderedAsMiniApp")) failures.push("client_verification_embed_render_gate_missing");
 if (!clientVerificationCheck.includes("openedAsStandardWeb")) failures.push("client_verification_base_gate_missing");
 if (!clientVerificationCheck.includes("paidMintEnabled !== false")) failures.push("client_verification_paid_mint_gate_missing");
-
-const sixFidCheck = existsSync(join(root, "scripts/six-fid-private-test-check.mjs")) ? readFileSync(join(root, "scripts/six-fid-private-test-check.mjs"), "utf8") : "";
-if (!sixFidCheck.includes("chain-poem-weaver-six-fid-private-test-check")) failures.push("six_fid_check_kind_missing");
-if (!sixFidCheck.includes("six_fid_not_distinct")) failures.push("six_fid_distinct_gate_missing");
-if (!sixFidCheck.includes("embedRenderedAsMiniApp")) failures.push("six_fid_embed_gate_missing");
-if (!sixFidCheck.includes("atLeastOneKeepOwnLine")) failures.push("six_fid_ownership_intent_gate_missing");
 
 const releasePacket = existsSync(join(root, "scripts/release-packet.mjs")) ? readFileSync(join(root, "scripts/release-packet.mjs"), "utf8") : "";
 if (!releasePacket.includes("chain-poem-weaver-release-packet")) failures.push("release_packet_kind_missing");

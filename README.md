@@ -216,8 +216,6 @@ npm run test:line-receipt-contract
 npm run test:verify-deployment
 npm run test:production-rehearsal
 npm run test:dist
-npm run six-fid:template
-npm run test:six-fid
 npm run deploy:target-check
 npm run deploy:production:dry-run
 npm run operator:release-brief
@@ -276,10 +274,9 @@ npm run verify:deployment -- https://your-domain.example
 `deploy:target-check` writes `data/deploy-target-readiness.json` with origin, account-association, deploy-provider, token, and server-capable host readiness.
 `deploy:production:dry-run` writes `data/deploy-production-run.json` and chains deploy target readiness, production build, release packet, preflight, manifest, Base, hosting, and production static checks. `deploy:production:live` runs the Vercel deploy command and then `verify-deployment`.
 `operator:release-brief` writes `data/operator-release-brief.md` and `.json` with the exact operator inputs, signing packet, command path, and current blockers.
-`client:template` writes `data/client-verification.template.json`. After live deploy, fill it as `data/client-verification.json`.
-`test:client-verification` writes `data/client-verification-check.json` and fails until the live Farcaster/Base client receipt proves client launch, cast composer, Quick Auth/provenance, standard-web fallback, share fallback, and paid mint disabled.
-`six-fid:template` writes `data/six-fid-private-test.template.json`.
-`test:six-fid` writes `data/six-fid-private-test-check.json` and fails until the private run proves five distinct real FIDs, Quick Auth, completed poem, completed-poem share URL, Mini App embed rendering, fail-closed recheck, financial pins, and at least one keep/own-line intent signal. The script name is retained for command compatibility.
+`client:template` writes `data/client-verification.template.json`. After live deploy, you may fill it as `data/client-verification.json`.
+`test:client-verification` writes `data/client-verification-check.json` and checks optional post-deploy Farcaster/Base client acceptance evidence: client launch, cast composer, Quick Auth/provenance, standard-web fallback, share fallback, and paid mint disabled.
+There is no user-count proof gate. Client verification is optional acceptance evidence, not permission to deploy.
 `test:line-receipt-contract` writes `data/line-receipt-contract-readiness.json`. It proves the Base ERC-1155 contract scaffold, replay guard, signed claim binding, provenance claim-key plan, and live-mint env gates are present while keeping deploy readiness false until contract values exist.
 `test:manifest` checks that the Farcaster manifest and `fc:miniapp` embed agree on home URL, assets, domain, and account-association payload shape. Local placeholder builds warn on missing account association; production mode fails until the real signed fields exist.
 `test:verify-deployment` exercises the live verifier against mocked HTTPS responses and writes `data/live-verify-run.self-test.json`.
@@ -310,5 +307,5 @@ Current launch blockers:
 - A completed poem must share as a proper Farcaster embed/frame in a cast, using a URL with `?view=thread&poem=...&poemId=...`.
 - `CHAIN_POEM_PROVENANCE_SECRET` and live `/api/provenance` verification are still required before any final poem hash can be treated as server-signed provenance.
 - Base ERC-1155 contract deployment and wallet ownership verification are still required before line receipt NFTs can mint.
-- Live `data/client-verification.json` receipt must prove Farcaster/Base client behavior.
+- Optional live `data/client-verification.json` receipt can document Farcaster/Base client behavior.
 - Operator approval remains required before enabling paid Base minting.

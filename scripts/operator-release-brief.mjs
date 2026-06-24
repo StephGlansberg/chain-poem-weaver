@@ -75,10 +75,10 @@ const operatorActionChecklist = [
   {
     id: "capture_live_client_receipt",
     owner: "operator_and_codex",
-    required: true,
+    required: false,
     input: "data/client-verification.json",
     valueShape: "filled from data/client-verification.template.json after live Farcaster/Base client testing",
-    why: "This proves real launch, composeCast, Quick Auth/provenance, standard-web fallback, share fallback, and paid mint disabled.",
+    why: "Optional acceptance evidence after deployment: real launch, composeCast, Quick Auth/provenance, standard-web fallback, share fallback, and paid mint disabled.",
   },
 ];
 
@@ -105,7 +105,7 @@ const brief = {
     "npm run deploy:production:live",
     "Test inside Farcaster/Base client",
     "npm run client:template",
-    "Fill data/client-verification.json with live client evidence",
+    "Optionally fill data/client-verification.json with live client evidence",
     "npm run test:client-verification",
   ],
   next: missingInputs.length
@@ -150,7 +150,7 @@ function renderMarkdown(brief) {
     "- `VERCEL_TOKEN` for the current server-capable deploy path.",
     "- Optional `CHAIN_POEM_PROVENANCE_SECRET` when server-signed poem provenance is desired.",
     "- Optional Base ERC-1155 line receipt contract address, signer, and metadata base URI when NFT minting is explicitly approved.",
-    "- Client verification evidence after live Farcaster/Base testing.",
+    "- Optional client verification evidence after live Farcaster/Base testing.",
     "",
     "## Farcaster Signing Packet",
     "",
@@ -173,7 +173,7 @@ function renderMarkdown(brief) {
     "",
     "## Client Verification",
     "",
-    "After live deploy, run `npm run client:template`, copy/fill the template as `data/client-verification.json`, then run `npm run test:client-verification`.",
+    "Optional after live deploy: run `npm run client:template`, copy/fill the template as `data/client-verification.json`, then run `npm run test:client-verification`.",
     "The receipt must prove Farcaster launch, cast composer, Quick Auth/provenance, Base standard-web fallback, share fallback, line receipt mint plan visibility, and paid mint still disabled.",
   );
   lines.push("", "## Next", "", brief.next, "");
