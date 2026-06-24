@@ -1,4 +1,4 @@
-name: Vercel Production
+name: Mini App CI
 
 on:
   push:
@@ -7,13 +7,13 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: vercel-production
+  group: mini-app-ci
   cancel-in-progress: true
 
 jobs:
-  production-deploy:
+  mini-app-ci:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 10
     permissions:
       contents: read
 
@@ -45,30 +45,7 @@ jobs:
         env:
           MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
 
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-
-      - name: Pull Vercel environment
-        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      - name: Vercel prebuild
-        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
-
-      - name: Vercel deploy
-        run: vercel deploy --prebuilt --prod --yes --archive=tgz --token="${{ secrets.VERCEL_TOKEN }}"
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
-
-      - name: Post-deploy verification reminder
+      - name: Vercel Git integration reminder
         run: |
-          echo "Production deploy completed."
-          echo "Next human/client acceptance step: open the Mini App in Farcaster/Base and, if needed, fill data/client-verification.json."
+          echo "CI completed. Vercel production deployment is owned by the connected Git integration for StephGlansberg/chain-poem-weaver."
+          echo "Optional client acceptance step: open the Mini App in Farcaster/Base and, if needed, fill data/client-verification.json."
