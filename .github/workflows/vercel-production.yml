@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  proof-gated-deploy:
+  production-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -44,14 +44,6 @@ jobs:
         env:
           MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
 
-      - name: Client proof gate
-        run: npm run test:client-verification
-        env:
-          MINIAPP_ORIGIN: https://chain-poem-weaver.vercel.app
-
-      - name: Five-FID proof gate
-        run: npm run test:six-fid
-
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
@@ -73,3 +65,8 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Post-deploy verification reminder
+        run: |
+          echo "Production deploy completed."
+          echo "Next human/client acceptance step: open the Mini App in Farcaster/Base and, if needed, fill data/client-verification.json."

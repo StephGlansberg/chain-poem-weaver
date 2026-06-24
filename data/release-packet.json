@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "kind": "chain-poem-weaver-release-packet",
   "appId": "chain-poem-weaver",
-  "generatedAtUtc": "2026-06-23T23:47:01.932Z",
+  "generatedAtUtc": "2026-06-23T23:57:54.580Z",
   "package": {
     "name": "chain-poem-weaver",
     "version": "0.1.0",
@@ -14,12 +14,12 @@
     "homeUrl": "https://chain-poem-weaver.vercel.app/poem",
     "domain": "chain-poem-weaver.vercel.app",
     "accountAssociationReady": true,
-    "buildGeneratedAtUtc": "2026-06-23T23:46:56.405Z"
+    "buildGeneratedAtUtc": "2026-06-23T23:57:50.449Z"
   },
   "deployTarget": {
     "schemaVersion": 1,
     "kind": "chain-poem-weaver-deploy-target-readiness",
-    "generatedAtUtc": "2026-06-23T23:47:01.911Z",
+    "generatedAtUtc": "2026-06-23T23:57:54.561Z",
     "ok": true,
     "origin": "https://chain-poem-weaver.vercel.app",
     "domain": "chain-poem-weaver.vercel.app",
@@ -335,7 +335,7 @@
         "file": "deployment-build.json",
         "exists": true,
         "bytes": 1699,
-        "sha256": "c5c0cc424d13e9c9f98fba223ce31366d37e801d278331f05d5fb420d1c94dc4"
+        "sha256": "6d6c5068a20b3a8d1f6602f1e7179345107406943f9762a279b41d0429787c90"
       },
       {
         "file": "package.json",
